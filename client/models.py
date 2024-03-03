@@ -36,6 +36,7 @@ class Currency(models.Model):
     def __str__(self):
         return f'{self.currency}'
 
+
 class Client_Data(models.Model):
 
     CATEGORIES = (
@@ -97,7 +98,6 @@ class Client_Data(models.Model):
     def __str__(self):
         return f'{self.client_name}'
 
-
 class Contact_Person(models.Model):
     client = models.ForeignKey(Client_Data, on_delete=models.CASCADE, null=True)
     contact_person = models.CharField(max_length=100)
@@ -111,6 +111,7 @@ class Contact_Person(models.Model):
 
     def __str__(self):
         return f'{self.client} - {self.contact_person}'
+
 
 class Client_Bill_Details(models.Model):
     client = models.OneToOneField(Client_Data, on_delete=models.CASCADE)
