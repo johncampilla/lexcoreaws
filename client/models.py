@@ -57,6 +57,7 @@ class Client_Data(models.Model):
 
     client_number = models.CharField(max_length=30, blank=True, null=True)
     entity_type = models.CharField(max_length=20, choices=ENTITYTYPE, null=True, blank=True)
+    category = models.CharField(max_length=20, choices=CATEGORIES, null=True, blank=True)
     client_name = models.CharField(max_length=200)
     unit_description = models.CharField(max_length=50, blank=True, null=True)    
     address = models.CharField(max_length=250, null=True)
