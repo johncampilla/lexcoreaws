@@ -84,7 +84,10 @@ def newcasefolder(request):
     if request.method == 'POST':
         form = CaseFolderForm(request.POST)
         if form.is_valid():
-            form.save()
+            folder_rec = form.save(commit=False)
+            folder_rec.client_id = request.POST['client']
+            folder_rec.save()
+#            form.save()
             return redirect('folder-index')
 
 
