@@ -29,7 +29,7 @@ DEBUG =True
 # DEBUG = False
 
 #ALLOWED_HOSTS = [".awsapprunner.com"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.0.98.152']
 
 
 # Application definition
