@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/mainsidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/mainheader.html' %}
+        <div class="my-3 mx-3">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header mb-2" style=" color: black; background-color:rgb(228, 248, 188);"> Enter
+                            One-Time-Password
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="otp"
+                                        placeholder="OTP">
+                                    <label for="floatingInput">OTP</label>
+                                </div>
+                                <input type="submit" value="Login" />
+                            </form>
+                            <hr>
+                            <p style="font-style: italic;">Please verify your OTP in you email account!"
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

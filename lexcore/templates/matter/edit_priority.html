@@ -1,0 +1,53 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <form action="" method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header text-center" style=" color: black; background-color:rgb(228, 248, 188);">
+                        <b>Priority Claims</b>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Matter Title</span>
+                                <input type="text" name="folder" value="{{matter.matter_title}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Priority Number</span>
+                                {{form.priority_number}}
+                            </div>
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Priority Date</span>
+                            {{form.priority_date}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Country</span>
+                            {{form.priority_country_filing}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Certified Copy</span>
+                            {{form.certified_copy_attached}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a class='btn btn-success' href="#">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>{{contacts}}</b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:30%;">Folder/Client</th>
+                            <th scope="col" style="width:22%;">Contact Persons</th>
+                            <th scope="col" style="width:40%;">Matter Title</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for matter in matters %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ matter.folder }}</td>
+                            <td>{{ matter.matter_contact_person.contact_person }}</td>
+                            <td>{{ matter.matter_title }}</td>
+                            <td><a class="btn btn-primary btn-sm" href="{% url 'select-matter' matter.id %}"
+                                    title="Select">
+                                    <i class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

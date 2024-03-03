@@ -1,0 +1,128 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-12">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>Editing Applicant </h6>
+                    <hr>
+                    <form action="" method="POST" class="row g-3">
+                        <div class="col-auto">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Applicant</span>
+                                        {{form.applicant}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Category</span>
+                                        {{form.category}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Entity Type</span>
+                                        {{form.entity_type}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Contact#</span>
+                                        {{form.contact_no}}
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Address</span>
+                                        {{form.address}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">City</span>
+                                        {{form.city}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">State</span>
+                                        {{form.state}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Country</span>
+                                        {{form.country}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Zip Code</span>
+                                        {{form.zipcode}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">First Name</span>
+                                        {{form.first_name}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Middle Name</span>
+                                        {{form.middle_name}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Last Name</span>
+                                        {{form.last_name}}
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Position</span>
+                                        {{form.position}}
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Gender</span>
+                                        {{form.sex}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Email</span>
+                                        {{form.email}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Nationality</span>
+                                        {{form.nationality}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 145px;">Applicant Is
+                                            Inventor?</span>
+                                        {{form.applicant_isinventor}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'select-matter' mid %}">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </form>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:25%;">Applicant</th>
+                                <th scope="col" style="width:15%;">Contact#</th>
+                                <th scope="col" style="width:12%;">Email</th>
+                                <th scope="col" style="width:25%;">Address</th>
+                                <th scope="col" style="width:20%;">Nationality</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for applicant in applicantlist %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ applicant.applicant }}</td>
+                                <td>{{ applicant.contact_no }}</td>
+                                <td>{{ applicant.email }}</td>
+                                <td>{{ applicant.address }}</td>
+                                <td>{{ applicant.nationality }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

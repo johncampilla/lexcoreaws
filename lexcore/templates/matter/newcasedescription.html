@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    Case
+                    Theory/Description
+                </div>
+            </div>
+
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>New Entry</h6>
+                    <hr>
+                    <!-- <form method="POST" class="row g-3"> -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text"
+                                            style="width: 114px; font-weight: bold;">Matter</span>
+                                        <input type="text" value="{{matter.matter_title}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 116px;">Case Description</span>
+                                        {{form.case_description}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 116px;">Case Theory</span>
+                                        {{form.case_theory}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 116px;">Described By</span>
+                                        {{form.submittedby}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'select-matter' matter.id %}">Return</a>
+
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

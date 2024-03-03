@@ -1,0 +1,90 @@
+<div class="modal fade" {% block modal-id %} id="outgoingmodal" {% endblock modal-id %}data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="outgoingmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-5" id="outgoingmodalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i> &nbsp; &nbsp; Filing Entry Form
+                    {% endblock modal-title %}
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'outgoing' %}" method="POST" class="row g-3">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Matter</span>
+                                {{outform.matter}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Tran Date</span>
+                                {{outform.tran_date}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Document Date</span>
+                                {{outform.doc_date}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Stage Group</span>
+                                {{outform.stage_group}}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Transaction Type</span>
+                                {{outform.tran_type}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Mail Type</span>
+                                {{outform.mail_type}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Lawyer</span>
+                                {{outform.lawyer}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Task Code</span>
+                                {{outform.task_code}}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Activity</span>
+                                {{outform.task}}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Spent In Hrs</span>
+                                {{outform.spentinhrs}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Spent In Min</span>
+                                {{outform.spentinmin}}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Due Code</span>
+                                {{outform.duecode}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a class='btn btn-secondary mb-2' data-bs-dismiss="modal">close</a>
+                        <input class='btn btn-secondary mb-2' type="submit" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

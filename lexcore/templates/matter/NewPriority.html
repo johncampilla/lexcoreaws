@@ -1,0 +1,56 @@
+<div class="modal fade" id="newpriorityModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newpriorityModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newpriorityModalLabel">Conventional Priority Entry</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'matter-new-priority' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="row">
+                        <!-- <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 125px;">Matter</span>
+                                {{formpriority.matter}}
+                            </div>
+                        </div> -->
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">ID</span>
+                            <input type="text" name="matter" value="{{matter.id}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Matter Title</span>
+                            <input type="text" name="mattertitle" value="{{matter.matter_title}}" class="form-control"
+                                readonly>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Priority Number</span>
+                            {{formpriority.priority_number}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Priority Date</span>
+                            {{formpriority.priority_date}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Country Filing</span>
+                            {{formpriority.priority_country_filing}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Attached Cert.Cpy</span>
+                            {{formpriority.certified_copy_attached}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class='btn btn-secondary' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

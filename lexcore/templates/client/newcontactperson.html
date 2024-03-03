@@ -1,0 +1,52 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center" style=" color: black; background-color:rgb(228, 248, 188);">
+                    Contact For for <b>{{Client.client_name}}</b>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Client</span>
+                                <input type="text" name="folder" value="{{Client.client_name}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Contact Person</span>
+                                {{form.contact_person}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Address</span>
+                                {{form.address}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Position</span>
+                                {{form.position}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Phone</span>
+                                {{form.phone}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a class='btn btn-secondary' href="{% url 'select-client' Client.id %}">Return</a>
+                        <input class='btn btn-secondary' type="submit" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

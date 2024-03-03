@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Folder Matters
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    Matter
+                    List &nbsp;
+                </div>
+                <div class="col-lg-3">
+                    <a class="btn btn-secondary btn-sm" href="#" title="New Client"><i class="fas fa-plus"></i></a>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="foldermatterlist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:27%;">Folder</th>
+                            <th scope="col" style="width:10%;">Lawyer</th>
+                            <th scope="col" style="width:10%;">Reference#</th>
+                            <th scope="col" style="width:10%;">Date Filed</th>
+                            <th scope="col" style="width:30%;">Matter Title</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for matter in matters %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ matter.folder }}</td>
+                            <td>{{ matter.handling_lawyer.access_code }}</td>
+                            <td>{{ matter.matterno }}</td>
+                            <td>{{ matter.filing_date | date:'m/d/Y' }}</td>
+                            <td>{{ matter.matter_title }}</td>
+                            <td><a class="btn btn-secondary btn-sm" href="{% url 'select-matter' matter.id %}"
+                                    title="Select"><i class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="{% url 'select-client' client.id %}">Return</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

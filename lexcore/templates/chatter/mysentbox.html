@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Chat (Sent Items)
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            {% include 'chatter/navbar.html' %}
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Sent Items</b>
+                </div>
+
+                <table class="table-hover table-bordered table-sm small table" id="maillist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Message to</th>
+                            <th scope="col" style="width:15%;">Date</th>
+                            <th scope="col" style="width:50%;">Message</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sent in msgsent %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ sent.messageto }}</td>
+                            <td>{{ sent.created_at }}</td>
+                            <td>{{ sent.messagebox }}</td>
+                            <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'open-chat' sent.id %}" title="Select Email"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

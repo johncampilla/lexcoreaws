@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Emails
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            {% include 'emailportal/navbar.html' %}
+            <hr>
+            <table class="table-hover table-bordered table-sm small table mt-1" id="clientcontactlist">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th scope="col" style="width:3%;">#</th>
+                        <th scope="col" style="width:25%;">Client</th>
+                        <th scope="col" style="width:22%;">Contact Persons</th>
+                        <th scope="col" style="width:15%;">Position</th>
+                        <th scope="col" style="width:15%;">Email</th>
+                        <th scope="col" style="width:15%;">Phone</th>
+                        <th scope="col" style="width:5%;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ contact.client }}</td>
+                        <td><a href="#">
+                                {{contact.contact_person }}</a></td>
+                        <td>{{ contact.position }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+
+                        <td><a class="btn btn-secondary btn-sm" href="#" title="Modify"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

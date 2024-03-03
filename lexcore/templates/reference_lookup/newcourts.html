@@ -1,0 +1,99 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-12">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>Courts</h6>
+                    <hr>
+                    <form action="" method="POST" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Court</span>
+                                        {{form.court}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Address</span>
+                                        {{form.address}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Contact Person</span>
+                                        {{form.contact_person}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Phone Number</span>
+                                        {{form.contact_number}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Presiding Judge
+                                        </span>
+                                        {{form.presiding_judge}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Remarks</span>
+                                        {{form.remarks}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'reference-index' %}">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                </div>
+                </form>
+
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <table class="table-hover table-bordered table-sm small table" id="matterlist">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th scope="col" style="width:3%;">#</th>
+                        <th scope="col" style="width:5%;">Lawyer</th>
+                        <th scope="col" style="width:5%;">Filing Date</th>
+                        <th scope="col" style="width:22%;">Folder</th>
+                        <th scope="col" style="width:10%;">Status</th>
+                        <th scope="col" style="width:25%;">Matter Title</th>
+                        <th scope="col" style="width:15%;">Matter No.</th>
+                        <th scope="col" style="width:10%;">Client Ref</th>
+                        <th scope="col" style="width:5%;">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for matter in matters %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="text-center">{{ matter.handling_lawyer.access_code }}</td>
+                        <td>{{ matter.filing_date | date:'m/d/Y' }}</td>
+                        <td>{{ matter.folder }}</td>
+                        <td>{{ matter.status }}</td>
+                        <td>{{ matter.matter_title }}</td>
+                        <td>{{ matter.matterno }}</td>
+                        <td>{{ matter.clientrefno }}</td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'select-matter' matter.id %}"
+                                title="Select Matter"><i class="far fa-hand-pointer"></i></a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock content %}

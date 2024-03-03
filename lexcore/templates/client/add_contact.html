@@ -1,0 +1,58 @@
+<div class="modal fade" {% block modal-id %} id="addcontactModal" {% endblock modal-id %}data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="addcontactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-5" id="addcontactModalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i> &nbsp; &nbsp; Client Contact Form
+                    {% endblock modal-title %}
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'new-contact' %}" method="POST" class="row g-3">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;"> Client ID</span>
+                            <input type="text" name="client" value="{{client.id}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;"> Client</span>
+                            <input type="text" name="clientname" value="{{client.client_name}}" class="form-control"
+                                readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Contact Person</span>
+                            {{formcontact.contact_person}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Position</span>
+                            {{formcontact.position}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Address</span>
+                            {{formcontact.address}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Email</span>
+                            {{formcontact.email}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 113px;">Phone</span>
+                            {{formcontact.phone}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row"> -->
+                <div class="col-lg-4">
+                    <a class='btn btn-secondary mb-2' data-bs-dismiss="modal">close</a>
+                    <input class='btn btn-secondary mb-2' type="submit" value="Save">
+                    <!-- </div> -->
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>

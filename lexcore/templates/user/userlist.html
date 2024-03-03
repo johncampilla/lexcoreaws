@@ -1,0 +1,107 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+User List
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <!-- <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> -->
+
+        <div class="my-3 mx-3">
+            <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#createnewuserModal"
+                title="New user"><i class="fas fa-plus"></i></a>
+
+            <div class="card mt-1">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    Lawyers
+                </div>
+                <table class="table-hover table-bordered table-sm small table">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Date Hired</th>
+                            <th scope="col" style="width:5%;">User</th>
+                            <th scope="col" style="width:5%;">access_code</th>
+                            <th scope="col" style="width:20%;">Name</th>
+                            <th scope="col" style="width:25%;">address</th>
+                            <th scope="col" style="width:10%;">rank</th>
+                            <th scope="col" style="width:15%;">supporto</th>
+                            <th scope="col" style="width:10%;">mobile</th>
+                            <th scope="col" style="width:5%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td class="text-center">{{ user.date_acquired | date:'m/d/Y' }}</td>
+                            <td>{{ user.userid }}</td>
+                            <td>{{ user.access_code }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.address }}</td>
+                            <td>{{ user.rank }}</td>
+                            <td>{{ user.supporto }}</td>
+                            <td>{{ user.mobile }}</td>
+                            <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'define-userinfo' user.id %}" title="Select User"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    Non-Lawyers
+                </div>
+                <table class="table-hover table-bordered table-sm small table">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Date Hired</th>
+                            <th scope="col" style="width:5%;">User</th>
+                            <th scope="col" style="width:5%;">access_code</th>
+                            <th scope="col" style="width:20%;">Name</th>
+                            <th scope="col" style="width:25%;">address</th>
+                            <th scope="col" style="width:10%;">rank</th>
+                            <th scope="col" style="width:15%;">supporto</th>
+                            <th scope="col" style="width:10%;">mobile</th>
+                            <th scope="col" style="width:5%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for nonlawyers in non_lawyers %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td class="text-center">{{ user.date_acquired | date:'m/d/Y' }}</td>
+                            <td>{{ nonlawyers.userid }}</td>
+                            <td>{{ nonlawyers.access_code }}</td>
+                            <td>{{ nonlawyers.name }}</td>
+                            <td>{{ nonlawyers.address }}</td>
+                            <td>{{ nonlawyers.rank }}</td>
+                            <td>{{ nonlawyers.supporto }}</td>
+                            <td>{{ nonlawyers.mobile }}</td>
+                            <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'define-userinfo' user.id %}" title="Select User"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock%}

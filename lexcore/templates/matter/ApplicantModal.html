@@ -1,0 +1,113 @@
+<div class="modal fade" id="newapplicantModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newapplicantModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newapplicantModalLabel">Applicant Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'new-modalapplicant' %}" method="POST" class="row g-3">
+                    <div class="col-auto">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">ID</span>
+                                    <input type="text" name="matter" value="{{matter.id}}" class="form-control"
+                                        readonly>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Folder</span>
+                                    <input type="text" name="matter_title" value="{{matter.matter_title}}"
+                                        class="form-control" readonly>
+                                </div> -->
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Applicant</span>
+                                    {{form.applicant}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Category</span>
+                                    {{form.category}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Entity Type</span>
+                                    {{form.entity_type}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Contact#</span>
+                                    {{form.contact_no}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Address</span>
+                                    {{form.address}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">City</span>
+                                    {{form.city}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">State</span>
+                                    {{form.state}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Country</span>
+                                    {{form.country}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Zip Code</span>
+                                    {{form.zipcode}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">First Name</span>
+                                    {{form.first_name}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Middle Name</span>
+                                    {{form.middle_name}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Last Name</span>
+                                    {{form.last_name}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Position</span>
+                                    {{form.position}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Gender</span>
+                                    {{form.sex}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Email</span>
+                                    {{form.email}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Nationality</span>
+                                    {{form.nationality}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 145px;">Applicant Is
+                                        Inventor?</span>
+                                    {{form.applicant_isinventor}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input class='btn btn-secondary' type="submit" value="Save">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

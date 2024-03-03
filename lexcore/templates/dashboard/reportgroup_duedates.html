@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Due Date Reports
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class=" card-header" style=" color: black; background-color:rgb(228, 248, 188);">
+                        <b>{{report.reportgroup}} Reports</b>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col">Case Type</th>
+                                <th scope="col">Group</th>
+                                <th scope="col">Report Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ report.casetype }}</td>
+                                <td>{{ report.reportgroup }}</a></td>
+                                <td>{{ report.reportdetail }}</td>
+                                <td style="text-align: center;"><a class="btn btn-secondary btn-sm" href="#"
+                                        title="Select Matter"><i class="far fa-hand-pointer"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

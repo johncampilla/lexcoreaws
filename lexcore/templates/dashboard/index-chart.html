@@ -1,0 +1,164 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Dashboard</b>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            New Clients </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ clientcount }} /
+                                            {{prevclientcount }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="{% url 'dashboard-details-newmatters' %}">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">New
+                                            Matters
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{matterscount}} /
+                                            {{prevmonthmatters}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Billings
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ bill_amt
+                                            }}/{{prev_bill_amt}}
+                                        </div>
+                                        <hr>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ peso_amt
+                                            }}/{{prev_peso_amt}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div
+                                            class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                            Unpaid Bills As Of Today
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">{{unbill_amt}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Unbilled Filing & OPE As Of Today </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">#</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center" style=" color: black; background-color:rgb(228, 248, 188);"><b>Data
+                        Analytic</b>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <h6 class="text-center font-weight-bold"><b>Number Of Matters (By Application Type)</b> </h6>
+                        <canvas id="myChart1" width="1000" height="150"></canvas>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <h6 class="text-center font-weight-bold"><b>Number Of Clients by (Industry)</b> </h6>
+                        <canvas id="myChart2" width="1000" height="150"></canvas>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-12">
+                        <h6 class="text-center font-weight-bold"><b>Number Of Matters (Lawyers)</b></h6>
+                        <canvas id="myChart3" width="1000" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

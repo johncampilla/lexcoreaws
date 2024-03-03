@@ -1,0 +1,739 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Client Details
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card-header text-center text-white bg-primary">
+                <b>{{invoice.bill_no}} - {{ invoice.matter.matter_title }}</b>
+            </div>
+
+            <!-- Nav pills -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#detail">Client Detail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#matters">Matter Detail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#activity">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#invoice">Invoice</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#invoiceimage">Images</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="detail">
+                    <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#addclientModal"
+                        title="New Client"><i class="fas fa-plus"></i></a>
+
+                    <a class="btn btn-secondary btn-sm mt-1" href="#" title="Modify Client"><i
+                            class="fas fa-edit"></i></a>
+
+                    <a class="btn btn-secondary btn-sm mt-1" href="#" title="Delete Client"><i
+                            class="fas fa-trash-alt"></i></a>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Client Name</span>
+                                <input type="text" name="folder" value="{{client.client_name}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Address</span>
+                                <input type="text" name="folder" value="{{client.address}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> City </span>
+                                <input type="text" name="folder" value="{{client.city}}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> State </span>
+                                <input type="text" name="folder" value="{{client.state}}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Entity Type </span>
+                                <input type="text" name="folder" value="{{ client.entity_type }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Category </span>
+                                <input type="text" name="folder" value="{{ client.category }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Industry </span>
+                                <input type="text" name="folder" value="{{ client.industry }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Email </span>
+                                <input type="text" name="folder" value="{{ client.email }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Landline </span>
+                                <input type="text" name="folder" value="{{ client.landline }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Mobile </span>
+                                <input type="text" name="folder" value="{{ client.mobile }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Date Acquired </span>
+                                <input type="text" name="folder" value="{{ client.date_acquired}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Status </span>
+                                <input type="text" name="folder" value="{{ client.status}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="h6 pb-2 mb-2 text-success border-bottom border-success">
+                                <b>Billing Addressee Parameters</b>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Bill To </span>
+                                <input type="text" name="folder" value="{{ client.billing_to }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Bill Address </span>
+                                <input type="text" name="folder" value="{{ client.billing_address }}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Billing Currency </span>
+                                <input type="text" name="folder" value="{{ client.billing_currency }}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Attention To </span>
+                                <input type="text" name="folder" value="{{ client.billing_attention }}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Position </span>
+                                <input type="text" name="folder" value="{{ client.position }}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane container fade mb-1" id="matters">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Case Folder</span>
+                                <input type="text" name="folder" value="{{matter.folder.folder_description}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Trademark </span>
+                                <input type="text" name="folder" value="{{matter.matter_title}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Claim Color </span>
+                                <input type="text" name="folder" value="{{ip_matter.claim_of_color}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Translation </span>
+                                <input type="text" name="folder" value="{{ip_matter.translation}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Disclaimer</span>
+                                <input type="text" name="folder" value="{{ip_matter.disclaimer}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Type Of Mark </span>
+                                <input type="text" name="folder" value="{{ip_matter.type_of_mark}}" class="form-control"
+                                    readonly>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Our Appearance </span>
+                                <input type="text" name="folder" value="{{matter.appearance}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Matter Contact </span>
+                                <input type="text" name="folder" value="{{matter.matter_contact_person.contact_person}}"
+                                    class="form-control" readonly>
+                            </div>
+
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Lawyer </span>
+                                <input type="text" name="folder" value="{{matter.handling_lawyer.lawyer_name}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Opp Lawyer </span>
+                                <input type="text" name="folder" value="{{matter.opposing_counsel}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Client Reference </span>
+                                <input type="text" name="folder" value="{{matter.clientrefno}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Our Reference </span>
+                                <input type="text" name="folder" value="{{matter.referenceno}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Status </span>
+                                <input type="text" name="folder" value="{{matter.status}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">App Type </span>
+                                <input type="text" name="folder" value="{{matter.apptype}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;"> Filing Date </span>
+                                <input type="text" name="folder" value="{{ matter.filing_date | date:'m/d/Y'}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">File/Case# </span>
+                                <input type="text" name="folder" value="{{matter.matterno}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Case Type </span>
+                                <input type="text" name="folder" value="{{matter.case_type}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Venue </span>
+                                <input type="text" name="folder" value="{{matter.filed_at}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Nature </span>
+                                <input type="text" name="folder" value="{{matter.nature}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="h6 pb-2 mb-2 text-success border-bottom border-success">
+                            <b>IPO Assignments</b>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">App No.</span>
+                                <input type="text" name="folder" value="{{ip_matter.application_no}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Date Filed </span>
+                                <input type="text" name="folder" value="{{ip_matter.application_date | date:'m/d/Y'}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Cert. Number</span>
+                                <input type="text" name="folder" value="{{ip_matter.certificate_no}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Cert Date </span>
+                                <input type="text" name="folder" value="{{ip_matter.registration_date | date:'m/d/Y'}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">OG Gazette Ref</span>
+                                <input type="text" name="folder" value="{{ip_matter.publication_reference}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Publication</span>
+                                <input type="text" name="folder" value="{{ip_matter.publication_date | date:'m/d/Y'}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">IPC Number</span>
+                                <input type="text" name="folder" value="{{ip_matter.ipc_appno | date:'m/d/Y' }}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Renewal Date</span>
+                                <input type="text" name="folder" value="{{ip_matter.renewal_date | date:'m/d/Y' }}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">IPC Date</span>
+                                <input type="text" name="folder" value="{{ip_matter.ipc_appdate | date:'m/d/Y' }}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="h6 pb-2 mb-2 text-success border-bottom border-success">
+                            <b>Other Information</b>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Status </span>
+                                <input type="text" name="folder" value="{{ip_matter.status}}" class="form-control"
+                                    readonly>
+                            </div>
+
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Withdrawal Date</span>
+                                <input type="text" name="folder" value="{{ip_matter.reason_withdrawn}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Abandon Date</span>
+                                <input type="text" name="folder" value="{{ip_matter.date_of_Withdrawn}}"
+                                    class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Created</span>
+                                <input type="text" name="folder" value="{{matter.created_at}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Updated</span>
+                                <input type="text" name="folder" value="{{matter.modified_at}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Stage</span>
+                                <input type="text" name="folder" value="{{matter.stage_group}}" class="form-control"
+                                    readonly>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="folders">
+                    <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#addfolderModal"
+                        title="New Client Folder"><i class="fas fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table mt-1">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:15%;">Folder/Areas</th>
+                                <th scope="col" style="width:30%;">Folder Description</th>
+                                <th scope="col" style="width:15%;">Supervising Lawyer</th>
+                                <th scope="col" style="width:15%;">Remarks</th>
+                                <th scope="col" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for folder in folders %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ folder.folder_type }}</td>
+                                <td>{{ folder.folder_description }}</td>
+                                <td>{{ folder.Supervisinglawyer }}</td>
+                                <td>{{ folder.remarks }}</td>
+                                <!-- <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'newfolder-matter' folder.id client.id %}"
+                                        title="New folder matter"><i class="fas fa-plus"></i></a>
+                                </td> -->
+                                <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'list-foldermatters' folder.id %}" title="View folder matters"><i
+                                            class="far fa-hand-pointer"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <table class="table-hover table-bordered table-sm small table mt-1">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:77%;">Folder/Practice Areas</th>
+                                <th scope="col" style="width:15%;">No. Of Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for folder in folder_result %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ folder.folder__folder_type__folder }}</td>
+                                <td style="text-align: center;"><a
+                                        href="{% url 'folder-matters' folder.folder__folder_type__id client.id %}">
+                                        {{folder.NoOfMatters }}</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="contacts">
+                    <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#addcontactModal"
+                        title="New Contact"><i class="fas fa-plus"></i></a>
+
+
+                    <table class="table-hover table-bordered table-sm small table mt-1">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:22%;">Contact Persons</th>
+                                <th scope="col" style="width:15%;">Position</th>
+                                <th scope="col" style="width:40%;">Address</th>
+                                <th scope="col" style="width:15%;">Phone</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a
+                                        href="{% url 'viewclientdetails-contact' contact.id client.id contact.contact_person %}">
+                                        {{contact.contact_person }}</a></td>
+                                <td>{{ contact.position }}</td>
+                                <td>{{ contact.address }}</td>
+                                <td>{{ contact.phone }}</td>
+
+                                <td><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'edit-contact' contact.id client.id %}" title="Modify"><i
+                                            class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'remove-contact' contact.id client.id %}" title="New Matter"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="activity">
+                    <table class="table-hover table-bordered table-sm small table mt-1" id="clientactivitylist">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:10%;">Activity Date</th>
+                                <th scope="col" style="width:5%;">Type</th>
+                                <th scope="col" style="width:5%;">Lawyer</th>
+                                <th scope="col" style="width:40%;">Activity</th>
+                                <th scope="col" style="width:5%;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ activity.tran_date }}</td>
+                                <td>{{ activity.tran_type }}</td>
+                                <td>{{ activity.lawyer.access_code }}</td>
+                                <td>{{ activity.task }}</td>
+
+                                <td class="text-center"><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'matter-viewactivity' activity.id matter.id %}" title="Modify"><i
+                                            class="far fa-hand-pointer"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="duedates">
+                    <table class="table-hover table-bordered table-sm small table" id="clientduedatelist">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:10%;">Due Date</th>
+                                <th scope="col" style="width:25%;">Matter Title</th>
+                                <th scope="col" style="width:10%;">File Number</th>
+                                <th scope="col" style="width:10%;">Date Filed</th>
+                                <th scope="col" style="width:5%;">Lawyer</th>
+                                <th scope="col" style="width:25%;">Particulars</th>
+                                <th scope="col" style="width:10%;">Date Complied</th>
+                                <th scope="col" style="width:2%;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for duedate in duedates %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ duedate.duedate | date:'m/d/Y' }}</td>
+                                <td>{{ duedate.matter.matter_title}}</td>
+                                <td>{{ duedate.matter.matterno}}</td>
+                                <td>{{ duedate.matter.filing_date | date:'m/d/Y' }}</td>
+                                <td>{{ duedate.matter.handling_lawyer.access_code }}</td>
+                                <td>{{ duedate.particulars }}</td>
+                                <td>{{ duedate.date_complied | date:'m/d/Y' }}</td>
+                                <td class="text-center"><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'select-matter' duedate.matter.id %}" title="Edit Due Date"><i
+                                            class="far fa-hand-pointer"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="billings">
+                    <table class="table-hover table-bordered table-sm small table" id="clientbillings">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:12%;">Bill Date</th>
+                                <th scope="col" style="width:13%;">Bill #</th>
+                                <th scope="col" style="width:12%;">PF</th>
+                                <th scope="col" style="width:12%;">Filing</th>
+                                <th scope="col" style="width:12%;">OPE</th>
+                                <th scope="col" style="width:10%;">Rate</th>
+                                <th scope="col" style="width:12%;">Bill Amount USD</th>
+                                <th scope="col" style="width:12%;">Bill Amount PHP</th>
+                                <th scope="col" style="width:2%;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for AR in accounts_receivables %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ AR.bill_date | date:'m/d/Y' }}</td>
+                                <td>{{ AR.bill_no}}</td>
+                                <td>{{ AR.pf_amount }}</td>
+                                <td>{{ AR.filing_amount }}</td>
+                                <td>{{ AR.ope_amount }}</td>
+                                <td>{{ AR.peso_rate_used }}</td>
+                                <td>{{ AR.total_USDamount }}</td>
+                                <td>{{ AR.total_PhPamount }}</td>
+                                <td class="text-center"><a class="btn btn-secondary btn-sm" href="#"
+                                        title="Edit Due Date">
+                                        <i class="far fa-hand-pointer"></i></a>
+                                </td>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="invoice">
+                    <div class="card">
+                        <div class="card-header">
+                            Invoice Detail
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="input-group input-group-sm mb-1 readonly">
+                                        <span class="input-group-text" style="width: 110px;">Invoice No.</span>
+                                        <input type="text" name="folder" style="font-weight: bold;"
+                                            value="{{invoice.bill_no}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Invoice Date</span>
+                                        <input type="text" name="folder" style="font-weight: bold;"
+                                            value="{{invoice.bill_date}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Pay Status</span>
+                                        <input type="text" name="folder" value="{{invoice.payment_tag}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">PF Amount</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.pf_amount}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Filing Fee</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.filing_amount}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Exp Amount</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.ope_amount}}" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 120px;">Total Amt (USD)</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.total_USDamount}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 120px;">Total Amt (PhP)</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.total_PhPamount}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 120px;">Peso Rate</span>
+                                        <input type="text" name="folder" style="text-align: right;"
+                                            value="{{invoice.peso_rate_used}}" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:5%;">#</th>
+                                    <th scope="col" style="width:10%;">Bill Date</th>
+                                    <th scope="col" style="width:55%;">Service Rendered</th>
+                                    <th scope="col" style="width:15%;">Bill Amount (USD)</th>
+                                    <th scope="col" style="width:15%;">Bill Amount (PhP)</th>
+
+                                </tr>
+                            </thead>
+                            {% for bill in bills %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ bill.ar.bill_date | date:'m/d/Y' }}</td>
+                                <td>{{ bill.service_rendered }}</td>
+                                <td style="text-align: right;">{{ bill.pf_USDamount }}</td>
+                                <td style="text-align: right;">{{ bill.pf_PhPamount }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:5%;">#</th>
+                                    <th scope="col" style="width:10%;">Bill Date</th>
+                                    <th scope="col" style="width:55%;">Filing Particulars</th>
+                                    <th scope="col" style="width:15%;">Fee (USD)</th>
+                                    <th scope="col" style="width:15%;">Fee (PhP)</th>
+
+                                </tr>
+                            </thead>
+                            {% for filing in filing_fees %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ filing.ar.bill_date | date:'m/d/Y' }}</td>
+                                <td>{{ filing.filing_particulars }}</td>
+                                <td style="text-align: right;">{{ filing.filing_fee_USDamount }}</td>
+                                <td style="text-align: right;">{{ filing.filing_fee_PHPamount }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:5%;">#</th>
+                                    <th scope="col" style="width:10%;">Bill Date</th>
+                                    <th scope="col" style="width:10%;">Tran Date</th>
+                                    <th scope="col" style="width:45%;">Other Expenses</th>
+                                    <th scope="col" style="width:15%;">Expense (USD)</th>
+                                    <th scope="col" style="width:15%;">Expense (PhP)</th>
+
+                                </tr>
+                            </thead>
+                            {% for OPE in OPE %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ OPE.ar.bill_date | date:'m/d/Y' }}</td>
+                                <td>{{ OPE.exp_date | date:'m/d/Y' }}</td>
+                                <td>{{ OPE.exp_particulars }}</td>
+                                <td style="text-align: right;">{{ OPE.exp_USDAmount }}</td>
+                                <td style="text-align: right;">{{ OPE.exp_PHPAmount }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="invoiceimage">
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:5%;">#</th>
+                                <th scope="col" style="width:10%;">Bill Date</th>
+                                <th scope="col" style="width:10%;">Attachment</th>
+                                <th scope="col" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        {% for inv in invimg %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td style="text-align: center;">{{ inv.ar.bill_date | date:'m/d/Y' }}</td>
+                            <td><a href="{% url 'view-invoice-image' inv.id %}"><img class="img-fluid"
+                                        src="{{ inv.invoiceImage.url }}" height="2000" width="2000" /></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                    <!-- <div class="container mb-2 mt-2 text-center">
+
+                        <img class="img-fluid" src="{{ invimg.invoiceImage.url }}" height="1000" width="1000" />
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for message in messages %}
+{% if message.tags == 'sucess' %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    var m = "{{ message }}"
+    swal("perfect !", m, "success")
+</script>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

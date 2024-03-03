@@ -1,0 +1,81 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+HTML to Print
+{% endblock title %}
+
+
+{% block sytlesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="buttons-container">
+    <button id="save">Save</button>
+    <button id="print">Print</button>
+</div>
+<a id="save_to_image">
+    <div class="invoice-container">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="{% static 'assets/images/green.png }%"
+                                    style="width: 100%; max-width: 100px" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                PinoyFreeCoder<br />
+                                12345 Sunny Road<br />
+                                Sunny Ville, Manila 12345
+                            </td>
+                            <td>
+                                Youtube Inc. <br />
+                                Juan Dela Cruz <br />
+                                pinoyfreecoder.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Payment Method</td>
+                <td>Check #</td>
+            </tr>
+            <tr class="details">
+                <td>Check</td>
+                <td>1000</td>
+            </tr>
+            <tr class="heading">
+                <td>Item</td>
+                <td>Price</td>
+            </tr>
+            <tr class="item">
+                <td>Hosting (3 months)</td>
+                <td>$75.00</td>
+            </tr>
+            <tr class="item last">
+                <td>Domain name (1 year)</td>
+                <td>$10.00</td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>Total : $385.00</td>
+            </tr>
+        </table>
+    </div>
+</a>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'assets/js/html2canvas.js' %}"></script>
+<script src="{% static 'assets/js/print.js' %}"></script>
+{% endblock%}

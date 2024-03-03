@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/mainsidebar.html' %}
+    <div class="container mt-5">
+        <div class="w-50">
+            {% include 'layout/mainheader.html' %}
+            <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+            <div class="my-3 mx-3">
+                <div class="card">
+                    <form method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        {{form.as_p}}
+
+                        <input type="submit" value="Login" />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

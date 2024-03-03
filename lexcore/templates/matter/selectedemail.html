@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Client Details
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center text-white sm bg-primary mb-2">
+                    <b>{{matter}}</b>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;">Emailed To:</span>
+                            <input type="text" name="folder" value="{{email.email}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;">Emailed By:</span>
+                            <input type="text" name="folder" value="{{email.sentby}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;">Subject:</span>
+                            <input type="text" name="subject" value="{{email.subject}}" class="form-control" readonly>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;">Message:</span>
+                            <input type="text" name="subject" value="{{email.message}}" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Date</th>
+                            <th scope="col" style="width:60%;">Document</th>
+                            <th scope="col" style="width:5%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for doc in emailattachments %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ doc.created_at | date:'m/d/Y' }}</td>
+                            <td>{{ doc.emailattachment }}</td>
+                            <td class="text-center"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'email-attach' doc.id %}" title=" View Document"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

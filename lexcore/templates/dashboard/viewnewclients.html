@@ -1,0 +1,102 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Current Month Details (New Clients) </b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="#">
+                    <!-- <table class="table-hover table-sm table-bordered small table table-dark table-striped">         -->
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:15%;">Client</th>
+                            <th scope="col" style="width:15%;">Date Acquired</th>
+                            <th scope="col" style="width:10%;">Category</th>
+                            <th scope="col" style="width:15%;">Email</th>
+                            <th scope="col" style="width:10%;">Mobile</th>
+                            <th scope="col" style="width:10%;">Industry</th>
+                            <th scope="col" style="width:10%;">Country</th>
+                            <th scope="col" style="width:5%;">Select</th>
+
+                        </tr>
+                    </thead>
+                    {% if clients %}
+                    {% for client in clients %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{client.client_name}}</td>
+                        <td>{{ client.date_acquired }}</td>
+                        <td>{{ client.category }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.mobile }}</td>
+                        <td>{{ client.industry }}</td>
+                        <td>{{ client.country }}</td>
+                        <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                href="{% url 'select-client' client.id %}" title="Select"><i
+                                    class="far fa-hand-pointer"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <div class="text-danger">no clients starting with the letter {{ selected | upper }}</div>
+                    {% endif %}
+
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Previous Month Details (New Clients) </b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="#">
+                    <!-- <table class="table-hover table-sm table-bordered small table table-dark table-striped">         -->
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:15%;">Client</th>
+                            <th scope="col" style="width:15%;">Date Acquired</th>
+                            <th scope="col" style="width:10%;">Category</th>
+                            <th scope="col" style="width:15%;">Email</th>
+                            <th scope="col" style="width:10%;">Mobile</th>
+                            <th scope="col" style="width:10%;">Industry</th>
+                            <th scope="col" style="width:10%;">Country</th>
+                            <th scope="col" style="width:5%;">Select</th>
+
+                        </tr>
+                    </thead>
+                    {% if clients %}
+                    {% for client in prevclients %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{client.client_name}}</td>
+                        <td>{{ client.date_acquired }}</td>
+                        <td>{{ client.category }}</td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.mobile }}</td>
+                        <td>{{ client.industry }}</td>
+                        <td>{{ client.country }}</td>
+                        <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                href="{% url 'select-client' client.id %}" title="Select"><i
+                                    class="far fa-hand-pointer"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <div class="text-danger">no clients starting with the letter {{ selected | upper }}</div>
+                    {% endif %}
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

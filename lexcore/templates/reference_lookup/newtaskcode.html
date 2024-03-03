@@ -1,0 +1,101 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>Task Code</h6>
+                    <hr>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Folder</span>
+                                        {{form.foldertype}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Task Code</span>
+                                        {{form.ActivityCode}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Tran Type</span>
+                                        {{form.TranType}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Activity
+                                        </span>
+                                        {{form.Activity}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Bill Description</span>
+                                        {{form.bill_description}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">PF</span>
+                                        {{form.amount}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Currency</span>
+                                        {{form.currency}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Peso Rate</span>
+                                        {{form.pesorate}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Peso Amount</span>
+                                        {{form.pesoamount}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'reference-index' %}">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </form>
+                    <div class="card mt-1">
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:2%;">#</th>
+                                    <th scope="col" style="width:70%;">Fee Description</th>
+                                    <th scope="col" style="width:10%;">Amount (USD)</th>
+                                    <th scope="col" style="width:10%;">Amount (PhP)</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fee in fees %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ fee.fee_description }}</td>
+                                    <td>{{ fee.amount }}</td>
+                                    <td>{{ fee.pesoamount }}</td>
+                                    <td><a class="btn btn-secondary btn-sm" href="#" title="Modify"><i
+                                                class="fas fa-edit"></i></a>
+                                    </td>
+
+                                    <td><a class="btn btn-secondary btn-sm" href="#" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

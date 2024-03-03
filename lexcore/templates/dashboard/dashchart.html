@@ -1,0 +1,471 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addtaskModal"
+                        title="Add New Task"><i class="fas fa-plus"></i></a>&nbsp;&nbsp;<b>Dashboard</b>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 text-center">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            New Clients </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ clientcount }} /
+                                            {{prevclientcount }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="{% url 'dashboard-details-newclients' %}">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 text-center">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">New Filed
+                                            Matters
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{matterscount}} /
+                                            {{prevmonthmatters}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="{% url 'dashboard-details-newmatters' %}">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 text-center">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            IP Certificates
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            {{ issuancecount }}/{{ previssuancecount }}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="{% url 'dashboard-details-issuance' %}">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 text-center">
+                                        <div class=" text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Billings
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            {{ bill_amt }}/{{prev_bill_amt}}
+                                        </div>
+                                        <hr>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            {{ peso_amt }}/{{prev_peso_amt}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="{% url 'dashboard-details-newbills' %}">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div
+                                            class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                            Unpaid Bills As Of Today
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">
+                                            Under-Development
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Unbilled Filing & OPE As Of Today </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Under-Development</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Unbilled Filing & OPE As Of Today </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Under-Development</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Unbilled Filing & OPE As Of Today </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Under-Development</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">
+                                <hr>
+                                <a href="#">View Details</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Data Analytics</b>
+                </div>
+                <div class="row">
+                    <div class="col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of Clients By Industry </h5>
+                            <div>
+                                <canvas id="total-matters-industry"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-industry' %}" class="text-primary">Print</a>
+
+                            <script>
+                                const totalmattersindustry = document.getElementById('total-matters-industry');
+
+                                new Chart(totalmattersindustry, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [{% for data in industrydata %} '{{data.industry}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of Clients',
+                                        data: [{% for data in industrydata %} {{ data.count }}, {% endfor %}],
+                                    borderWidth: 1
+                                    }]
+                                },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of Matters By Case Type </h5>
+                            <div>
+                                <canvas id="total-matters-casetype"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-casetype' %}" class="text-primary">Print</a>
+
+                            <script>
+                                const totalmatterscasetype = document.getElementById('total-matters-casetype');
+
+                                new Chart(totalmatterscasetype, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [{% for data in casetypedata %} '{{data.casetype}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of matters',
+                                        data: [{% for data in casetypedata %} {{ data.count }}, {% endfor %}],
+                                    backgroundColor: [
+                                    'rgba(181, 64, 126, 0.91)',
+                                    //'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    // 'rgba(75, 192, 192, 1)',
+                                    // 'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+                                    borderColor: [
+                                    //'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    // 'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+                                    borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class=" col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of Matters By Lawyers </h5>
+                            <div>
+                                <canvas id="total-matters-lawyer"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-lawyer' %}" class="text-primary">Print</a>
+                            <script>
+                                const totalmatterslawyer = document.getElementById('total-matters-lawyer');
+
+                                new Chart(totalmatterslawyer, {
+                                    type: 'line',
+                                    data: {
+                                        labels: [{% for data in lawyerdata %} '{{data.lawyer}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of Clients',
+                                        data: [{% for data in lawyerdata %} {{ data.count }}, {% endfor %}],
+                                    backgroundColor: [
+                                    //'rgba(181, 64, 126, 0.91)',
+                                    'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    // 'rgba(75, 192, 192, 1)',
+                                    // 'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+                                    borderColor: [
+                                    //'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    // 'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+
+                                    borderWidth: 1
+                                                        }]
+                                                    },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class=" col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of Matters By Folder </h5>
+                            <div>
+                                <canvas id="total-matters-folder"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-folder' %}" class="text-primary">Print</a>
+                            <script>
+                                const totalmattersfolder = document.getElementById('total-matters-folder');
+
+                                new Chart(totalmattersfolder, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [{% for data in folderdata %} '{{data.folder}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of Matters',
+                                        data: [{% for data in folderdata %} {{ data.count }}, {% endfor %}],
+                                    backgroundColor: [
+                                    //'rgba(181, 64, 126, 0.91)',
+                                    //'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    //'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+                                    borderColor: [
+                                    //'rgba(255, 99, 132, 1)',
+                                    //'rgba(54, 162, 235, 1)',
+                                    //'rgba(255, 206, 86, 1)',
+                                    //'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    // 'rgba(255, 159, 64, 1)'
+                                ],
+
+                                    borderWidth: 1
+                                                                            }]
+                                                                        },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                                                                    });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class=" col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of IP/Non-IP Matters </h5>
+                            <div>
+                                <canvas id="total-matters-ip-non-ip"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-apptype' %}" class="text-primary">Print</a>
+
+                            <script>
+                                const totalmattersip_nonip = document.getElementById('total-matters-ip-non-ip');
+
+                                new Chart(totalmattersip_nonip, {
+                                    type: 'line',
+                                    data: {
+                                        labels: [{% for data in apptypedata %} '{{data.applicationtype}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of Matters',
+                                        data: [{% for data in apptypedata %} {{ data.count }}, {% endfor %}],
+                                    borderWidth: 1
+                                                                            }]
+                                                                        },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                                                                    });
+                            </script>
+                        </div>
+                    </div>
+                    <div class=" col-5 card mx-4">
+                        <div class="card-body mb-1">
+                            <h5 class="card-title text primary text-center">Total # Of Matters By Nature </h5>
+                            <div>
+                                <canvas id="total-matters-nature"></canvas>
+                            </div>
+                            <a href="{% url 'chart-print-nature' %}" class="text-primary">Print</a>
+
+                            <script>
+                                const totalmattersnature = document.getElementById('total-matters-nature');
+
+                                new Chart(totalmattersnature, {
+                                    type: 'line',
+                                    data: {
+                                        labels: [{% for data in naturedata %} '{{data.nature}}', {% endfor %}],
+                                    datasets: [{
+                                        label: '# of Matters',
+                                        data: [{% for data in naturedata %} {{ data.count }}, {% endfor %}],
+                                    borderWidth: 1
+                                                                                                }]
+                                                                                            },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                                                                                        });
+                            </script>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

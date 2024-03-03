@@ -1,0 +1,48 @@
+<div class="modal fade" id="newfolderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newfolderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-5" id="newfolderModalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i> &nbsp; &nbsp; Case Folder Entry
+                    {% endblock modal-title %}
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'new-folder' %}" method="POST" class="row g-3">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Client</span>
+                        {{form.client}}
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Description</span>
+                        {{form.folder_description}}
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Folder Type</span>
+                        {{form.folder_type}}
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Supervising Lawyer</span>
+                        {{form.Supervisinglawyer}}
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Remarks</span>
+                        {{form.remarks}}
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <a class='btn btn-secondary mb-2' data-bs-dismiss="modal">close</a>
+                                <input class='btn btn-secondary mb-2' type="submit" value="Save">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

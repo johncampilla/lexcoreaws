@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Number of Matters by Handling Lawyer</b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table">
+                    <!-- <table class="table-hover table-sm table-bordered small table table-dark table-striped">         -->
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th style="width:85%;">Handling Lawyer</th>
+                            <th style="width:10%;">Count</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    {% for qry in queryset %}
+                    <tr>
+                        <td>{{ qry.lawyer }}</td>
+                        <td style="text-align: center;">{{ qry.count }} </td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'print-selected-lawyers' qry.lawyer %}"
+                                title="Select"><i class="far fa-hand-pointer"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

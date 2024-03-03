@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            {% include 'chatter/navbar.html' %}
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Unread Messages</b>
+                </div>
+
+                <table class="table-hover table-bordered table-sm small table" id="maillist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Message From</th>
+                            <th scope="col" style="width:15%;">Date</th>
+                            <th scope="col" style="width:50%;">Message</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for chat in chatmessages %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ chat.messagefrom }}</td>
+                            <td>{{ chat.messagedate }}</td>
+                            <td>{{ chat.messagebox }}</td>
+                            <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'open-chat' chat.id %}" title="Select Email"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

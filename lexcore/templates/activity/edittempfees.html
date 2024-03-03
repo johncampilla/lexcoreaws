@@ -1,0 +1,58 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Client Edit
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center" style=" color: black; background-color:rgb(228, 248, 188);">
+                    PF Detail Form
+                </div>
+            </div>
+            <form action="" method="POST" class="row g-3">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px; font-weight: bold;">Matter</span>
+                                <input type="text" value="{{tempfees.matter.matter_title}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px; font-weight: bold;">Matter</span>
+                                <input type="text" value="{{tempfees.task.task}}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px; font-weight: bold;">Matter</span>
+                                <input type="text" value="{{tempfees.tran_date}}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Filing Particulars</span>
+                                {{form.filing_particulars}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Fee (USD)</span>
+                                {{form.USDamount}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Fee (PhP)</span>
+                                {{form.PhPamount}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <input class='btn btn-secondary' type="submit" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

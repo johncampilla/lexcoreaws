@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Edit Folder
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <form action="" method="POST" class="row g-3">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mt-5">
+
+                            <div class="card-header text-center text-white bg-primary">
+                                <b>Edit Folder Details</b>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;"> Client</span>
+                                <input type="text" name="folder" value="{{client.client_name}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;">Folder Description</span>
+                                {{form.folder_description}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;">Folder Type</span>
+                                {{form.folder_type}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;">Supervising Lawyer</span>
+                                {{form.Supervisinglawyer}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;">Remarks</span>
+                                {{form.remarks}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a class='btn btn-secondary mt-2' href="{% url 'folder-detail' folder.id %}">Return</a>
+                            <input class='btn btn-secondary mt-2' type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endblock content %}

@@ -1,0 +1,100 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Current Month Details (New Clients) </b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="invoicelist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:25%;">Matter</th>
+                            <th scope="col" style="width:5%;">Bill No</th>
+                            <th scope="col" style="width:5%;">Bill Date</th>
+                            <th scope="col" style="width:15%;">USD Amount</th>
+                            <th scope="col" style="width:5%;">PhP Amount</th>
+                            <th scope="col" style="width:5%;">PF</th>
+                            <th scope="col" style="width:30%;">Govt Fees</th>
+                            <th scope="col" style="width:5%;">Expenses</th>
+                            <th scope="col" style="width:5%;">Action</th>
+
+                        </tr>
+                    </thead>
+                    {% if invoices %}
+                    {% for invoice in invoices %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ invoice.matter.matter_title }}</td>
+                        <td>{{ invoice.bill_no }}</td>
+                        <td>{{ invoice.bill_date | date:'m/d/Y'}}</td>
+                        <td>{{ invoice.total_USDamount }}</td>
+                        <td>{{ invoice.total_PhPamount }}</td>
+                        <td>{{ invoice.pf_amount }}</td>
+                        <td>{{ invoice.filing_amount }}</td>
+                        <td>{{ invoice.ope_amount }}</td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'edit-invoice' invoice.id %}"
+                                title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <!-- <div class="text-danger">no clients starting with the letter {{ selected | upper }}</div> -->
+                    {% endif %}
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Previous Month Details (New Clients) </b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="invoicelist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:25%;">Matter</th>
+                            <th scope="col" style="width:5%;">Bill No</th>
+                            <th scope="col" style="width:5%;">Bill Date</th>
+                            <th scope="col" style="width:15%;">USD Amount</th>
+                            <th scope="col" style="width:5%;">PhP Amount</th>
+                            <th scope="col" style="width:5%;">PF</th>
+                            <th scope="col" style="width:30%;">Govt Fees</th>
+                            <th scope="col" style="width:5%;">Expenses</th>
+                            <th scope="col" style="width:5%;">Action</th>
+
+                        </tr>
+                    </thead>
+                    {% if invoices %}
+                    {% for invoice in previnvoices %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ invoice.matter.matter_title }}</td>
+                        <td>{{ invoice.bill_no }}</td>
+                        <td>{{ invoice.bill_date | date:'m/d/Y'}}</td>
+                        <td>{{ invoice.total_USDamount }}</td>
+                        <td>{{ invoice.total_PhPamount }}</td>
+                        <td>{{ invoice.pf_amount }}</td>
+                        <td>{{ invoice.filing_amount }}</td>
+                        <td>{{ invoice.ope_amount }}</td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'edit-invoice' invoice.id %}"
+                                title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <!-- <div class="text-danger">no clients starting with the letter {{ selected | upper }}</div> -->
+                    {% endif %}
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

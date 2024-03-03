@@ -1,0 +1,57 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+<!-- {% block js_scripts %}
+<script src="{% static 'matter/main.js' %}" defer></script>
+{% endblock js_scripts %} -->
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>Docketing Module</b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id="activitylist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:25%;">Client</th>
+                            <th scope="col" style="width:15%;">Matter</th>
+                            <th scope="col" style="width:10%;">Tran Date</th>
+                            <th scope="col" style="width:10%;">Lawyer</th>
+                            <th scope="col" style="width:35%;">Activity</th>
+                            <th scope="col" style="width:5%;">Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for activity in activities %}
+                        <tr>
+                            <td>{{ activity.matter.folder.client.client_name }}</td>
+                            <td>{{ activity.matter.matter_title }}</td>
+                            <td>{{ activity.tran_date | date:'m/d/Y' }}</td>
+                            <td class="text-center">{{ activity.lawyer.access_code }}</td>
+                            <td>{{ activity.task }}</td>
+                            <td><a class="btn btn-primary btn-sm" href="#" title="Modify"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var newSearch = $("#activitylist").DataTable();
+    $('#search').keyup(function () {
+        newSearch.search($(this).val()).draw();
+    })
+</script>
+
+{% endblock%}

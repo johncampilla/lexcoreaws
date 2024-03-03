@@ -1,0 +1,35 @@
+<div class="d-flex">
+    <div class="w-100">
+        <div class="my-3 mx-3">
+            <div class="col-md-10 offset-md-1">
+                {{ lawfirm }} <br>
+                {{ report.reportdetail }} <br>
+                <table class="table-hover table-sm small table">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col">Folder</th>
+                            <th scope="col">Client Name</th>
+                            <th scope="col">Head Lawyer</th>
+                            <th scope="col">Remarks</th>
+                            <th scope="col">Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in datareport %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ report.folder_type }}</td>
+                            <td>{{ report.client.client_name }}</a></td>
+                            <td>{{ report.Supervisinglawyer }}</td>
+                            <td>{{ report.remarks }}</td>
+                            <td>{{ report.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>

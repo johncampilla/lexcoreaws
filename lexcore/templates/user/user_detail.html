@@ -1,0 +1,95 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Client Details
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card-header text-center text-white bg-primary">
+                <b>File Records related to {{ user.userid.username }} </b>
+            </div>
+
+            <!-- Nav pills -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#detail">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#photo">Photo</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="detail">
+                    <a class="btn btn-secondary btn-sm mt-1" href="#" title="Modify Detail"><i
+                            class="fas fa-edit"></i></a>
+
+                    <a class="btn btn-secondary btn-sm mt-1" href="#" title="Delete User"><i
+                            class="fas fa-trash-alt"></i></a>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">User Name</span>
+                                <input type="text" name="username" value="{{user.userid.username}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Name </span>
+                                <input type="text" name="folder" value="{{user.name}}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Address </span>
+                                <input type="text" name="folder" value="{{ user.address }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Rank </span>
+                                <input type="text" name="folder" value="{{ user.rank }}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Access Code </span>
+                                <input type="text" name="folder" value="{{ user.access_code }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Mobile </span>
+                                <input type="text" name="folder" value="{{ user.mobile }}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Date Acquired </span>
+                                <input type="text" name="folder" value="{{ user.date_acquired}}" class="form-control"
+                                    readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;"> Remarks </span>
+                                <input type="text" name="folder" value="{{ user.remarks}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane container fade" id="photo">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for message in messages %}
+{% if message.tags == 'sucess' %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    var m = "{{ message }}"
+    swal("perfect !", m, "success")
+</script>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

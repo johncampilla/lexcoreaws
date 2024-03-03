@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>{{ contactname }}</b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:15%;">Client</th>
+                            <th scope="col" style="width:22%;">Contact Persons</th>
+                            <th scope="col" style="width:15%;">Position</th>
+                            <th scope="col" style="width:40%;">Address</th>
+                            <th scope="col" style="width:15%;">Phone</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in contacts %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ contact.client }}</td>
+                            <td>{{ contact.contact_person }}</td>
+                            <td>{{ contact.position }}</td>
+                            <td>{{ contact.address }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td><a class="btn btn-primary btn-sm"
+                                    href="{% url 'viewmatterdetails-contact' contact.id contact.client.id contact.contact_person %}"
+                                    title="Select">
+                                    <i class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+<div class="modal fade" id="newtemppf" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newtemppfLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newtemppfLabel">PF Entry</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'invoice-newPF' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">ID</span>
+                            <input type="text" name="matter" value="{{matter.id}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Matter Title</span>
+                            <input type="text" name="mattertitle" value="{{matter.matter_title}}" class="form-control"
+                                readonly>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Date</span>
+                            {{formPF.tran_date}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Service Rendered</span>
+                            {{formPF.service_rendered}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Spent in (Hrs)</span>
+                            {{formPF.spentinhrs}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Spent In (Min)</span>
+                            {{formPF.spentinmin}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Amount (USD)</span>
+                            {{formPF.USDamount}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Amount (PhP)</span>
+                            {{formPF.PhPamount}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class='btn btn-secondary' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

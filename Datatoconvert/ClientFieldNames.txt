@@ -1,0 +1,24 @@
+CLIENTNUMBER	= client_number
+EntityType	= entity_type
+ClientName	= client_name
+UnitDescription	= unit_description
+Street		= address
+City		= city
+State_Prov	= state
+Country		= country
+Fax Number	= fax_number
+EMail		= email
+URL		= website
+Zip Code		= zip_code
+Telephone Number	= landline
+Date Acquired	= date_acquired
+Last Updated	= updated
+CountryCode	= country
+Industry		= industry
+DateEntered	= date_entered
+User		= entered_by			
+ClientType	= client_type
+AccountOfficer	= account_officer
+ContactPerson	= account_person
+
+

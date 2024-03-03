@@ -1,0 +1,150 @@
+<div class="modal fade" id="newmatterInfoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newmatterInfoModalLabel">New Matter Other Info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'new-matterinfo' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Matter ID</span>
+                                <input type="text" name="matter" value="{{ matter.id }}" class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Matter Title</span>
+                                <input type="text" name="mattertitle" value="{{matter.matter_title}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <!-- 
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 113px;">Matter</span>
+                                {{forminfo.matter}}
+                            </div> -->
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Claim Of Color</span>
+                                {{forminfo.claim_of_color}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Translation</span>
+                                {{forminfo.translation}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Disclaimer</span>
+                                {{forminfo.disclaimer}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Type of Mark</span>
+                                {{forminfo.type_of_mark}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">IPO Examiner</span>
+                                {{forminfo.ipo_examiner}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Status</span>
+                                {{forminfo.status}}
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header text-center text-white sm bg-secondary">
+                                    <b>Local Filings</b>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Application No.</span>
+                                    {{forminfo.application_no}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Application Date</span>
+                                    {{forminfo.application_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Number</span>
+                                    {{forminfo.publication_reference}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Date</span>
+                                    {{forminfo.publication_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Registration No.</span>
+                                    {{forminfo.certificate_no}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Registration No.</span>
+                                    {{forminfo.registration_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Renewal Date</span>
+                                    {{forminfo.renewal_date}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header text-center text-white sm bg-secondary">
+                                    <b>IPC Details</b>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Number</span>
+                                    {{forminfo.ipc_appno}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Date</span>
+                                    {{forminfo.ipc_appdate}}
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header text-center text-white sm bg-secondary">
+                                    <b>Priority Details</b>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Number</span>
+                                    {{forminfo.priority_number}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Date</span>
+                                    {{forminfo.priority_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Filing</span>
+                                    {{forminfo.priority_country_filing}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header text-center text-white sm bg-secondary">
+                                    <b>Details Of Withdrawn/Abandonment/Cancellation</b>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Reason</span>
+                                    {{forminfo.reason_withdrawn}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Date</span>
+                                    {{forminfo.date_of_Withdrawn}}
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class='btn btn-secondary' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

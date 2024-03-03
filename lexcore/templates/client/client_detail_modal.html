@@ -1,0 +1,310 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <!-- {% include 'components/header.html' with title="Client Information" description="Details" %} -->
+            <div class="card">
+                <div class="card-header text-center text-white bg-primary">
+                    <b>{{client.client_name}}</b>
+                </div>
+                <div class=" card-body">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#detail">Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#contacts">Contact Persons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#matters">Matters</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#folders">Folders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#task">Recent Activities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#duedates">Due Dates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#unpaid_bills">Unpaid Bills</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="detail">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Address</span>
+                                        <input type="text" name="folder" value="{{client.address}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> City </span>
+                                        <input type="text" name="folder" value="{{client.city}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> State </span>
+                                        <input type="text" name="folder" value="{{client.state}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> State </span>
+                                        <input type="text" name="folder" value="{{ client.category }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> Contact Person </span>
+                                        <input type="text" name="folder" value="{{ client.main_contact }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Industry </span>
+                                        <input type="text" name="folder" value="{{ client.industry }}"
+                                            class="form-control" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Industry </span>
+                                        <input type="text" name="folder" value="{{ client.industry }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Email </span>
+                                        <input type="text" name="folder" value="{{ client.email }}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Landline </span>
+                                        <input type="text" name="folder" value="{{ client.landline }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Mobile </span>
+                                        <input type="text" name="folder" value="{{ client.mobile }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="h6 pb-2 mb-2 text-success border-bottom border-success">
+                                    <b>Billing Addressee Parameters</b>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Bill To </span>
+                                        <input type="text" name="folder" value="{{ client.billing_to }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Bill Address </span>
+                                        <input type="text" name="folder" value="{{ client.billing_address }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Billing Currency </span>
+                                        <input type="text" name="folder" value="{{ client.billing_currency }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Attention To </span>
+                                        <input type="text" name="folder" value="{{ client.billing_attention }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Position </span>
+                                        <input type="text" name="folder" value="{{ client.position }}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane container" id="matters">
+                            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                                <li><a href="#" class="nav-link px-2 text-dark">New Matter</a></li>
+                            </ul>
+
+                            <table class="table-hover table-bordered table-sm small table">
+                                <thead class="table-primary text-center">
+                                    <tr>
+                                        <th scope="col" style="width:3%;">#</th>
+                                        <th scope="col" style="width:92%;">Matter</th>
+                                        <th colspan="2" style="width:5%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for matter in matters %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ matter.matter_title }}</td>
+                                        <td><a class="btn btn-primary btn-sm" href="#" title="Modify"><i
+                                                    class="fas fa-edit"></i></a>
+                                        </td>
+                                        <td><a class="btn btn-primary btn-sm" href="#" title="New Matter"><i
+                                                    class="fa fa-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane container active" id="contacts">
+                            <a href="{% url 'new-contact' client.id %}" title="New Contact"><i
+                                    class="fas fa-plus"></i></a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                Launch static backdrop modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="" method="POST">
+                                                <div class="col-auto">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group input-group-sm mb-1 mt-1">
+                                                                <span class="input-group-text"
+                                                                    style="width: 113px;">Client</span>
+                                                                <input type="text" name="folder"
+                                                                    value="{{Client.client_name}}" class="form-control"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-1 mt-1">
+                                                                <span class="input-group-text"
+                                                                    style="width: 113px;">Contact Person</span>
+                                                                {{form.contact_person}}
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-1">
+                                                                <span class="input-group-text"
+                                                                    style="width: 113px;">Address</span>
+                                                                {{form.address}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="input-group input-group-sm mb-1 mt-1">
+                                                                <span class="input-group-text"
+                                                                    style="width: 113px;">Position</span>
+                                                                {{form.position}}
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-1">
+                                                                <span class="input-group-text"
+                                                                    style="width: 113px;">Phone</span>
+                                                                {{form.phone}}
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-lg-6">
+                                                                                    <div class="input-group input-group-sm mb-1">
+                                                                                        <span class="input-group-text" style="width: 113px;">Status</span>
+                                                                                        {{form.status}}
+                                                                                    </div>
+                                                                                </div> -->
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <a class='btn btn-success'
+                                                            href="{% url 'select-client' client.id %}">Return</a>
+                                                        <input class='btn btn-success' type="submit" value="Save">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Understood</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <table class="table-hover table-bordered table-sm small table">
+                                    <thead class="table-primary text-center">
+                                        <tr>
+                                            <th scope="col" style="width:3%;">#</th>
+                                            <th scope="col" style="width:22%;">Contact Persons</th>
+                                            <th scope="col" style="width:15%;">Position</th>
+                                            <th scope="col" style="width:40%;">Address</th>
+                                            <th scope="col" style="width:15%;">Phone</th>
+                                            <th colspan="2" style="width:5%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for contact in contacts %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ contact.contact_person }}</td>
+                                            <td>{{ contact.position }}</td>
+                                            <td>{{ contact.address }}</td>
+                                            <td>{{ contact.phone }}</td>
+
+                                            <td><a class="btn btn-primary btn-sm" href="#" title="Modify"><i
+                                                        class="fas fa-edit"></i></a>
+                                            </td>
+                                            <td><a class="btn btn-primary btn-sm" href="#" title="New Matter"><i
+                                                        class="fa fa-plus"></i></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane container fade" id="folders">
+                            <table class="table-hover table-bordered table-sm small table">
+                                <thead class="table-primary text-center">
+                                    <tr>
+                                        <th scope="col" style="width:3%;">#</th>
+                                        <th scope="col" style="width:92%;">Folder</th>
+                                        <th colspan="2" style="width:5%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for folder in folders %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ folder.folder_type }}</td>
+                                        <td><a class="btn btn-primary btn-sm" href="{% url 'edit-folder' folder.id %}"
+                                                title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                        </td>
+                                        <td><a class="btn btn-primary btn-sm" href="{% url 'new-foldertype' %}"
+                                                title="Edit Due Date"><i class="fa fa-plus"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

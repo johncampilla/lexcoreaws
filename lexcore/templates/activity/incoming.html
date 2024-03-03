@@ -1,0 +1,78 @@
+<div class="modal fade" {% block modal-id %} id="incomingmodal" {% endblock modal-id %}data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="incomingmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-5" id="incomingmodalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i> &nbsp; &nbsp; Mails Inward Entry Form
+                    {% endblock modal-title %}
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'incoming' %}" method="POST" class="row g-3">
+                <div class="col-auto">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" value="matter" style="width: 113px;">Matter</span>
+                                {{inform.matter}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" value="tran_date" style="width: 113px;">Tran Date</span>
+                                {{inform.tran_date}}
+                            </div>
+
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" value="mailing_date" style="width: 113px;">Mailing
+                                    Date</span>
+                                {{inform.mailing_date}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" value="examiner" style="width: 113px;">IPO
+                                    Examiner</span>
+                                {{inform.examiner}}
+                            </div>
+
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" value="duecode" style="width: 113px;">Due Code</span>
+                                {{inform.duecode}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" value="task_code" style="width: 113px;">Task Code</span>
+                                {{inform.task_code}}
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Outgoing Type</span>
+                                {{inform.mail_type}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Document Date</span>
+                                {{inform.doc_date}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Contact Person</span>
+                                {{inform.contact_person}}
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Activity</span>
+                                {{inform.task}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a class='btn btn-secondary mb-2' data-bs-dismiss="modal">close</a>
+                        <input class='btn btn-secondary mb-2' type="submit" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

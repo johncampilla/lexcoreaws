@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEXCore - {% block title %}{% endblock title %}</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </script>
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <!-- Chart js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!--Datatables CSS-->
+    <link
+        href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.css"
+        rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> -->
+
+    {% block js_scripts %}
+    {% endblock js_scripts %}
+    {% block sytlesheets %} {% endblock%}
+</head>
+
+<body>
+
+    <!-- <body> -->
+    <!-- <div class="container"> -->
+    {% block content %}
+    {% endblock %}
+
+    {% include 'client/add_client.html' %}
+    {% include 'client/add_folder.html' %}
+    {% include 'client/add_contact.html' %}
+    {% include 'dashboard/add_task.html' %}
+    {% include 'matter/newmatter.html' %}
+    {% include 'matter/createnewmatter.html' %}
+    {% include 'matter/newmatterotherinfo.html' %}
+    {% include 'matter/newpriority.html' %}
+    {% include 'matter/NewMatterApplicant.html' %}
+    {% include 'matter/ApplicantModal.html' %}
+    {% include 'matter/NewClassOfGoods.html' %}
+    {% include 'matter/NewDueDateModal.html' %}
+    {% include 'matter/DefineClassOfGoods.html' %}
+    {% include 'casefolder/add_newfoldermodal.html' %}
+    {% include 'casefolder/newmatter.html' %}
+    {% include 'user/NewUser.html' %}
+    {% include 'reference_lookup/add_fees.html' %}
+    {% include 'invoice/invoice_addtempf.html' %}
+    {% include 'invoice/invoice_addtempfees.html' %}
+    {% include 'matter/InventorModal.html' %}
+    {% include 'matter/NewMatterInventor.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!--Datatables JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-html5-2.4.2/b-print-2.4.2/datatables.min.js">
+        </script>
+
+    <!-- datatables script -->
+    <script>
+        $("#clientlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            dom: 'lBfrtip',
+            buttons: [
+                {   //copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // choose columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    titleAttr: 'Print',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //font size when exporting to print
+                    customize: function (win) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   //PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //center the table
+                    tableHeader: {
+                        alignment: 'center',
+                    },
+                },
+            ]
+        });
+        // var newSearch = $("#clientlist").DataTable();
+        // $('#search').keyup(function () {
+        //     newSearch.search($(this).val()).draw();
+        // })
+
+    </script>
+
+    <script>
+        $("#folderlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+            // buttons
+            dom: 'lBfrtip',
+            buttons: [
+                {   //copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // choose columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    titleAttr: 'Print',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //font size when exporting to print
+                    customize: function (win) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   //PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //center the table
+                    tableHeader: {
+                        alignment: 'center',
+                    },
+                    // customize: function (doc) {
+                    //     doc.styles.tableHeader.alignment = 'center';
+                    //     doc.styles.tableBodyOdd.alignment = 'center';
+                    //     doc.styles.tableBodyEven.alignment = 'center';
+                    //     doc.styles.tableHeader.fontSize = 7;
+                    //     doc.defaultSize.fontSize = 6;
+                    //     doc.content[1].table.widths = Array(doc.content[1].table.body[1].length + 1).join('*').split('');
+                    // }
+
+                },
+            ]
+        });
+        // enabled search outside box
+        // var newSearch = $("#folderlist").DataTable();
+        // $('#search').keyup(function () {
+        //     newSearch.search($(this).val()).draw();
+        // })
+    </script>
+    <script>
+        $("#matterlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 9,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            dom: 'lBfrtip',
+            buttons: [
+                {   //copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // choose columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    titleAttr: 'Print',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //font size when exporting to print
+                    customize: function (win) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   //PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //center the table
+                    tableHeader: {
+                        alignment: 'center',
+                    },
+                },
+            ]
+        });
+        // var newSearch = $("#matterlist").DataTable();
+        // $('#search').keyup(function () {
+        //     newSearch.search($(this).val()).draw();
+        // })
+
+    </script>
+    <script>
+        $("#foldermatterlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            dom: 'lBfrtip',
+            buttons: [
+                {   //copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // choose columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    },
+
+                },
+                {   //excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    },
+
+                },
+                {   //print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    titleAttr: 'Print',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    //font size when exporting to print
+                    customize: function (win) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   //PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6]
+                    },
+                    //center the table
+                    tableHeader: {
+                        alignment: 'center',
+                    },
+                },
+            ]
+        });
+        // var newSearch = $("#foldermatterlist").DataTable();
+        // $('#search').keyup(function () {
+        //     newSearch.search($(this).val()).draw();
+        // })
+
+    </script>
+
+    <script>
+        $("#activitylist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#searchlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#activitylisting").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#industrylist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#clientactivitylist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+
+    <script>
+        $("#clientduedatelist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#clientbillings").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+
+
+    <script>
+        $("#folderdetailslist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#clientmatterlist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        });
+    </script>
+    <script>
+        $("#matterduedatelist").DataTable({
+            //datatables configurations
+            paging: false,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            scrollY: '80vh',
+
+            //disable columns in sorting
+
+            // "columnDefs": [{
+            //     "targets": [4, 5],
+            //     "orderable": false
+            // }]
+        })
+    </script>
+    <script>
+        $("#invoicelist").DataTable({
+            //datatables configurations
+            paging: true,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+
+            dom: 'lBfrtip',
+            buttons: [
+                {   //copy
+                    extend: 'copy',
+                    text: '<i class="fas fa-clone"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Copy',
+                    // choose columns you want to copy
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //excel
+                    extend: 'excel',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'Excel',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+
+                },
+                {   //print
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i>',
+                    titleAttr: 'Print',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //font size when exporting to print
+                    customize: function (win) {
+                        $(win.document.body).css('font-size', '10pt')
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                },
+                {   //PDF
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i>',
+                    className: 'btn btn-secondary',
+                    titleAttr: 'PDF',
+                    // choose columns you want to export
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    },
+                    //center the table
+                    tableHeader: {
+                        alignment: 'center',
+                    },
+                },
+            ]
+        });
+        // var newSearch = $("#matterlist").DataTable();
+        // $('#search').keyup(function () {
+        //     newSearch.search($(this).val()).draw();
+        // })
+
+    </script>
+    <script>
+        $("#clientcontactlist").DataTable({
+            //datatables configurations
+            paging: false,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            scrollCollapse: true,
+            scrollY: '80vh',
+            scrollX: true,
+
+        });
+    </script>
+    <script>
+        $("#templatelist").DataTable({
+            //datatables configurations
+            paging: false,
+            pagelength: 8,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            scrollCollapse: true,
+            scrollY: '80vh',
+
+        });
+    </script>
+
+
+    <!-- Script to hide/show the password -->
+    <script>
+        function myFunction() {
+            var p = document.getElementById("password");
+            if (p.type === "password") {
+                p.type = "text"
+            }
+            else {
+                p.type = "password"
+            }
+        }
+
+    </script>
+    {% block scripts %}
+    {% endblock scripts %}
+
+</body>
+
+</html>

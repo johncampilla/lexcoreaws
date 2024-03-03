@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Emails
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            {% include 'emailportal/navbar.html' %}
+            <hr>
+            <h1> Mail Inbox </h1>
+        </div>
+    </div>
+</div>
+{% endblock content %}

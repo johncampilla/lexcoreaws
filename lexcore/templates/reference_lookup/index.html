@@ -1,0 +1,437 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Reference
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <!-- Nav pills -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#industry">Industry</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#apptype">App Type</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#foldertype">Folder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#casetype">Case Type</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#nature">Nature</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#appearance">Appearance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#courts">Venue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#taskcodes">Task Codes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#duecodes">Due Code</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#stages">Stages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#status">Status</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#currency">Currency</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="industry">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-industry' %}" title="New Industry"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:92%;">Industry</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for industry in industry %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ industry.industry }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-industry' industry.id %}"
+                                        title="Modify"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-industry' industry.id %}"
+                                        title="Delete item"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="apptype">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-apptype' %}" title="New App Type"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:92%;">App Type</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for apptype in apptype %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ apptype.apptype }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-apptype' apptype.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-apptype' apptype.id %}"
+                                        title="Delete item"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="foldertype">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-foldertype' %}" title="Edit Due Date"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:92%;">Folder Type</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for folder in folder %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ folder.folder }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-folder' folder.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-folder' folder.id %}"
+                                        title="Delete item"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="casetype">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-casetype' %}" title="Edit Due Date"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:92%;">Case Type</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for casetype in casetype %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ casetype.case_type }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-casetype' casetype.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-casetype' casetype.id %}"
+                                        title="Remove Case Type"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane container fade" id="nature">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-nature' %}" title="Edit Due Date"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:15%;">Case Type</th>
+                                <th scope="col" style="width:77%;">Nature</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for nature in nature %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ nature.casetype }}</td>
+                                <td>{{ nature.nature }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-nature' nature.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-nature' nature.id %}"
+                                        title="Delete Nature"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="appearance">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-appearance' %}" title="Edit Due Date"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:92%;">Appearance</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appearance in appearance %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ appearance.appearance }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-appearance' appearance.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm"
+                                        href="{% url 'remove-appearance' appearance.id %}" title="Delete Appearance"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="courts">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-courts' %}" title="Edit Due Date"><i
+                            class="fa fa-plus"></i></a>
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:30%;">Court</th>
+                                <th scope="col" style="width:37%;">Address</th>
+                                <th scope="col" style="width:20%;">Presiding Judge</th>
+                                <th scope="col" style="width:5%;">Contact Number</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for court in courts %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ court.court }}</td>
+                                <td>{{ court.address }}</td>
+                                <td>{{ court.presiding_judge }}</td>
+                                <td>{{ court.contact_number }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-courts' court.id %}"
+                                        title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-courts' court.id %}"
+                                        title="Delete Venue"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="taskcodes">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-taskcode' %}" title="Add Task Code"><i
+                            class="fa fa-plus"></i></a>
+                    <!-- Button trigger modal -->
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:10%;">Folder</th>
+                                <th scope="col" style="width:5%;">Activity Code</th>
+                                <th scope="col" style="width:5%;">Tran Type</th>
+                                <th scope="col" style="width:37%;">Task Description</th>
+                                <th scope="col" style="width:35%;">Billing Description</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for taskcode in taskcodes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ taskcode.foldertype.folder }}</td>
+                                <td>{{ taskcode.ActivityCode }}</td>
+                                <td>{{ taskcode.TranType }}</td>
+                                <td>{{ taskcode.Activity }}</td>
+                                <td>{{ taskcode.bill_description }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-taskcode' taskcode.id %}"
+                                        title="Edit Task Code"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-taskcode' taskcode.id %}"
+                                        title="Delete Code"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="duecodes">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-duecode' %}" title="Add Task Code"><i
+                            class="fa fa-plus"></i></a>
+                    <!-- Button trigger modal -->
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:10%;">Folder</th>
+                                <th scope="col" style="width:10%;">App Type</th>
+                                <th scope="col" style="width:10%;">Due Code</th>
+                                <th scope="col" style="width:35%;">Description</th>
+                                <th scope="col" style="width:10%;">Field Basis</th>
+                                <th scope="col" style="width:10%;">Basis Of Compute</th>
+                                <th scope="col" style="width:5%;">Terms</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for due in duecodes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ due.folder_type }}</td>
+                                <td>{{ due.apptype }}</td>
+                                <td>{{ due.DueCode }}</td>
+                                <td>{{ due.Description }}</td>
+                                <td>{{ due.fieldbsis }}</td>
+                                <td>{{ due.basisofcompute }}</td>
+                                <td>{{ due.terms }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-duecode' due.id %}"
+                                        title="Edit Task Code"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-duecode' due.id %}"
+                                        title="Delete Code"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="stages">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-activitygroup' %}" title="Add Task Code"><i
+                            class="fa fa-plus"></i></a>
+                    <!-- Button trigger modal -->
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:20%;">Case Type</th>
+                                <th scope="col" style="width:10%;">Sequence (1,2,3..)</th>
+                                <th scope="col" style="width:70%;">Stage</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stages in activitygroup %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ stages.case_type }}</td>
+                                <td>{{ stages.seq }}</td>
+                                <td>{{ stages.stage_group }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-stagegroup' stages.id %}"
+                                        title="Edit Task Code"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-stagegroup' stages.id %}"
+                                        title="Delete Code"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="status">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'new-status' %}" title="status"><i
+                            class="fa fa-plus"></i></a>
+                    <!-- Button trigger modal -->
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:20%;">Folder</th>
+                                <th scope="col" style="width:70%;">Status</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for status in status %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ status.folder }}</td>
+                                <td>{{ status.status }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-status' status.id %}"
+                                        title="Edit Task Code"><i class="fas fa-edit"></i></a>
+                                </td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'remove-status' status.id %}"
+                                        title="Delete Code"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane container fade" id="currency">
+                    <a class="btn btn-secondary btn-sm" href="{% url 'newcurrency' %}" title="Add Task Code"><i
+                            class="fa fa-plus"></i></a>
+                    <!-- Button trigger modal -->
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:20%;">Currency</th>
+                                <th scope="col" style="width:10%;">description</th>
+                                <th scope="col" style="width:70%;">Local Rate</th>
+                                <th style="width:5%;">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for currency in currency %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ currency.currency }}</td>
+                                <td>{{ currency.description }}</td>
+                                <td>{{ currency.local_rate }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="{% url 'edit-currency' currency.id %}"
+                                        title="Edit Task Code"><i class="fas fa-edit"></i></a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

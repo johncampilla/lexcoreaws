@@ -1,0 +1,35 @@
+<!-- <nav class="navbar bg-body-tertiary">
+    <form class="container-fluid justify-content-start">
+        <a class="btn btn-outline-secondary btn-sm me-2" href="#" role="button">Matters</a>
+        <a class="btn btn-outline-secondary btn-sm me-2" href="#" role="button">Generate</a>
+        <a class="btn btn-outline-secondary btn-sm me-2" href="#" role="button">Reminder</a>
+    </form>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Templates
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'docu-list' 1 %}">Intellectual Property</a></li>
+                        <li><a class="dropdown-item" href="{% url 'docu-list' 2 %}">Litigation</a></li>
+                        <li><a class="dropdown-item" href="{% url 'docu-list' 3 %}">Corporate</a></li>
+                        <li><a class="dropdown-item" href="{% url 'docu-list' 4 %}">Immigration</a></li>
+                        <li><a class="dropdown-item" href="{% url 'docu-print' %}">Print</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'newtemplate' %}">New Tempplate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Clients</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

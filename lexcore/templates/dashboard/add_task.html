@@ -1,0 +1,89 @@
+<div class="modal fade" {% block modal-id %} id="addtaskModal" {% endblock modal-id %}data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="addtaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title fs-5" id="addtaskModalLabel">
+                    {% block modal-title %} <i class="fas fa-plus"></i> &nbsp; &nbsp; Client Entry Form
+                    {% endblock modal-title %}
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'dashboard-addtask' %}" method="POST" class="row g-3">
+                    <div class="col-auto">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Matter</span>
+                                    {{form.matter}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Document Type</span>
+                                    {{form.doc_type}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Mail Type</span>
+                                    {{form.mail_type}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Tran Date</span>
+                                    {{form.tran_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Doc Date</span>
+                                    {{form.doc_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Task Code</span>
+                                    {{form.task_code}}
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Tran Type</span>
+                                    {{form.tran_type}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Lawyer</span>
+                                    {{form.lawyer}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Stage Group</span>
+                                    {{form.stage_group}}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Activity</span>
+                                    {{form.task}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Spent In Hrs</span>
+                                    {{form.spentinhrs}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 110px;">Spent In Min</span>
+                                    {{form.spentinmin}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a class='btn btn-secondary mb-2' data-bs-dismiss="modal">close</a>
+                            <input class='btn btn-secondary mb-2' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

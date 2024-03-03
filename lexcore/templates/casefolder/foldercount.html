@@ -1,0 +1,98 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Case Folders
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <!-- <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> -->
+
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#newfolderModal"
+                        title="New Folder"><i class="fas fa-plus"></i></a>
+                    <b>Case Folder</b>
+                </div>
+                <table class="table-hover table-bordered table-sm small table" id=folderlist>
+                    <thead class="table-primary text-center">
+                        <tr">
+                            <th style="width:3%">#</th>
+                            <th style="width:10%">(Practice Areas) Department</th>
+                            <th style="width:20%;">Client</th>
+                            <th style="width:25%;">Description</th>
+                            <th style="width:5%">Supervising Lawyer</th>
+                            <th style="width:32%;">Remarks</th>
+                            <th scope="col" style="width:5%;">Select</th>
+
+
+                            </tr>
+                    </thead>
+                    {% for folder in folderlist %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="text-center">{{ folder.folder_type }}</td>
+                        <td>{{ folder.client }}</td>
+                        <td>{{ folder.folder_description }}</td>
+                        <td>{{ folder.Supervisinglawyer }}</td>
+                        <td>{{ folder.remarks }}</td>
+                        <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                href="{% url 'folder-detail' folder.id %}" title="Select Client Folder"><i
+                                    class="far fa-hand-pointer"></i></a>
+                        </td>
+
+                        <!-- <td>
+                                    <a class="btn btn-info btn-sm btn-icon-split" href="#" title="Delete Folder">
+                                        <span class="icon text-white-20">
+                                            <i class="fas fa-trash"></i>
+                                        </span>                         
+                                    </a>
+                                    </td> -->
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="table-hover table-bordered table-sm small table">
+                    <thead class="table-primary text-center">
+                        <tr">
+                            <th style="width:3%">#</th>
+                            <th style="width:85%">(Practice Areas) Department</th>
+                            <th style="width:7%;"># Of Matters</th>
+                            <th style="width:5%;">Selected</th>
+
+                            </tr>
+                    </thead>
+                    {% for folder in folders %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ folder.folder__folder_type__folder }}</td>
+                        <td class="text-center">{{ folder.NoOfMatters }}</td>
+                        <td style="text-align: center;">
+                            <a class="btn btn-secondary btn-sm btn-icon-split"
+                                href="{% url 'selected-folder' folder.folder__folder_type__id %}" title="Select Folder">
+                                <span class="icon text-white-20">
+                                    <i class="far fa-hand-pointer"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script>
+    var newSearch = $("#folderlist").DataTable();
+    $('#search').keyup(function () {
+        newSearch.search($(this).val()).draw();
+    })
+</script>
+
+{% endblock%}

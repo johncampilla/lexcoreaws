@@ -1,0 +1,52 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <form action="" method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="my-3 mx-3">
+                <div class="card">
+                    <div class="card-header text-center" style=" color: black; background-color:rgb(228, 248, 188);">
+                        <b>Case Folder</b>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Client</span>
+                                {{form.client}}
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Description</span>
+                                {{form.folder_description}}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Folder Type</span>
+                                {{form.folder_type}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Supervising Lawyer</span>
+                                {{form.Supervisinglawyer}}
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 113px;">Remarks</span>
+                                {{form.remarks}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a class='btn btn-success' href="#">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}

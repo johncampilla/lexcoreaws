@@ -1,0 +1,71 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Lawyer Details
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>User Profile </h6>
+                    <hr>
+                    <form action="" method="POST" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Name</span>
+                                        {{form.name}}
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Address</span>
+                                        {{form.address}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" name='rank' style="width: 110px;">Rank</span>
+                                        {{form.rank}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Access Code</span>
+                                        {{form.access_code}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Support To</span>
+                                        {{form.supporto}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Mobile</span>
+                                        {{form.mobile}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Remarks</span>
+                                        {{form.remarks}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'define-userinfo' userprofile.id %}">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col-lg-6">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

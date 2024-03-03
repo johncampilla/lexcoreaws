@@ -1,0 +1,53 @@
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            {% block topmenu %}
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'reports-items' %}" class="nav-link px-2 text-white"><i class="fas fa-file"></i>
+                        Reports</a></li>
+                <li><a href="{% url 'templates'%}" class="nav-link px-2 text-white"><i class="fas fa-file-alt"></i>
+                        Documents</a></li>
+                <li><a href="{% url 'my_sentitems' %}" class="nav-link px-2 text-white"><i class="fas fa-envelope"></i>
+                        E-Mail</a></li>
+                <li><a href="{% url 'chatter-box' %}" class="nav-link px-2 text-white"><i class="fas fa-comments"></i>
+                        Chatter Box</a></li>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" href="{% url 'unread_messages' %}" id="alertsDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell fa-fw"></i>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter">{{ noofalerts }}</span>
+                    </a>
+                    <!-- Dropdown - Alerts -->
+                </li>
+
+            </ul>
+            {% endblock %}
+            {% block nav-btn %}
+            <div class="d-flex" style="margin-right: 25px;">
+                <div class="input-group input-group-sm">
+                    <input class="form-control" type="search" id="search" placeholder="Live search..."
+                        aria-label="Search">
+                    <!-- <a href="{% url 'client-index' %}" class="btn btn-secondary btn-sm"><i
+                            class="fas fa-sync-alt"></i></a> -->
+                </div>
+            </div>
+
+            <div class="text-end">
+
+                {% if request.user.is_authenticated %}
+                {{request.user}}
+                <a href="{% url 'user-logout' %}" class="btn btn-danger btn-sm"
+                    style="margin-left: 25px; border-radius: 50%;" title="Logout"> <i class="fas fa-power-off"></i></a>
+
+                {% else %}
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+                {% endif %}
+            </div>
+            {% endblock nav-btn %}
+
+        </div>
+    </div>
+</header>

@@ -1,0 +1,169 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Folder Details
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="card-header text-center text-white bg-primary">
+                <b>{{folder}}</b>
+            </div>
+            <!-- Nav pills -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#detail">Folder Detail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#activity">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#duedates">Due Dates</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="detail">
+                    <!-- <a class="btn btn-primary btn-sm" href="#" title="New Matter"><i class="fas fa-plus">
+                        </i></a> -->
+                    <a class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#foldernewmatterModal"
+                        title="New Matter"><i class="fas fa-plus"></i></a>
+
+
+                    <a class="btn btn-secondary btn-sm" href="{% url 'modify-folder' folder.id %}"
+                        title="Modify Folder"><i class="fas fa-edit"></i></a>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1 mt-1">
+                                <span class="input-group-text" style="width: 130px;"> Folder Description</span>
+                                <input type="text" name="folder" value="{{folder.folder_description}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 130px;"> Folder Type </span>
+                                <input type="text" name="folder" value="{{folder.folder_type}}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 130px;"> Supervising Lawyer </span>
+                                <input type="text" name="folder" value="{{folder.Supervisinglawyer}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="input-group input-group-sm mb-1">
+                                <span class="input-group-text" style="width: 130px;"> Remarks </span>
+                                <input type="text" name="folder" value="{{ folder.remarks }}" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <table class="table-hover table-bordered table-sm small table mt-1">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:10%;">Lawyer</th>
+                                    <th scope="col" style="width:10%;">Reference#</th>
+                                    <th scope="col" style="width:10%;">Date Filed</th>
+                                    <th scope="col" style="width:30%;">Matter Title</th>
+                                    <th scope="col" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for matter in matters %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ matter.handling_lawyer.access_code }}</td>
+                                    <td>{{ matter.matterno }}</td>
+                                    <td>{{ matter.filing_date | date:'m/d/Y' }}</td>
+                                    <td>{{ matter.matter_title }}</td>
+                                    <!-- <td><a class="btn btn-primary btn-sm"
+                                                            href="#" title="Modify"><i
+                                                                class="fas fa-edit"></i></a>
+                                                    </td> -->
+                                    <td><a class="btn btn-primary btn-sm" href="{% url 'select-matter' matter.id %}"
+                                            title="Modify"><i class="far fa-hand-pointer"></i></a>
+                                    </td>
+
+                                    <!-- <td><a class="btn btn-primary btn-sm"
+                                                            href="{% url 'removeclient-matter' matter.id client.id %}" title="Delete"><i
+                                                                class="fas fa-trash-alt"></i></a>
+                                                    </td> -->
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="activity">
+                    <table class="table-hover table-bordered table-sm small table mt-1">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:32%;">Matter</th>
+                                <th scope="col" style="width:10%;">Activity Date</th>
+                                <th scope="col" style="width:5%;">Type</th>
+                                <th scope="col" style="width:5%;">Lawyer</th>
+                                <th scope="col" style="width:40%;">Activity</th>
+                                <th colspan="2" style="width:5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for activity in activities %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ activity.matter }}</td>
+                                <td>{{ activity.tran_date }}</td>
+                                <td>{{ activity.tran_type }}</td>
+                                <td>{{ activity.lawyer.access_code }}</td>
+                                <td>{{ activity.task }}</td>
+
+                                <td><a class="btn btn-primary btn-sm" href="{% url 'select-activity' activity.id %}"
+                                        title="Related Matters"><i class="far fa-hand-pointer"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane container fade" id="duedates">
+                    <table class="table-hover table-bordered table-sm small table">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:10%;">Due Date</th>
+                                <th scope="col" style="width:30%;">Matter Title</th>
+                                <th scope="col" style="width:12%;">Lawyer</th>
+                                <th scope="col" style="width:30%;">Particulars</th>
+                                <th scope="col" style="width:10%;">Date Complied</th>
+                                <th scope="col" style="width:5%;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for duedate in duedates %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ duedate.duedate | date:'m/d/Y' }}</td>
+                                <td>{{ duedate.matter.matter_title}}</td>
+                                <td>{{ duedate.matter.handling_lawyer.access_code }}</td>
+                                <td>{{ duedate.particulars }}</td>
+                                <td>{{ duedate.date_complied | date:'m/d/Y' }}</td>
+                                <td><a class="btn btn-primary btn-sm" href="{% url 'select-matter' duedate.matter.id %}"
+                                        title="Edit Due Date"><i class="far fa-hand-pointer"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

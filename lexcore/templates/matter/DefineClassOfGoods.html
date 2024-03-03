@@ -1,0 +1,32 @@
+<div class="modal fade" id="newclassofgoodsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newclassofgoodsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newclassofgoodsModalLabel">Class Of Goods/Services Entry</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'profile-classofgoods' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-lg-12">
+                        <div class="input-group input-group-sm mb-1 mt-1">
+                            <span class="input-group-text" style="width: 113px;">Nice Class</span>
+                            {{form.nice_class}}
+                        </div>
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                        <span class="input-group-text" style="width: 113px;">Class Of Goods</span>
+                        {{form.class_description}}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class='btn btn-secondary' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

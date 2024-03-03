@@ -1,0 +1,59 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Folder Matter List
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <link rel="stylesheet" href="{% static 'assets/css/tabstyle.css' %}">
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <a class="btn btn-secondary btn-sm mt-1" data-bs-toggle="modal"
+                        data-bs-target="#foldernewmatterModal" title="New Matter"><i class="fas fa-plus"></i></a>
+                    <b>{{folder}}</b>
+                </div>
+
+                <!-- <div class="card-header text-center mb-1" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <b>{{ folder }}</b>
+                </div> -->
+                <table class="table-hover table-bordered table-sm small table mb-1" id="foldermatterlist">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:13%;">Folder Type</th>
+                            <th scope="col" style="width:10%;">Lawyer</th>
+                            <th scope="col" style="width:40%;">Matter Title</th>
+                            <th scope="col" style="width:10%;">Matter No.</th>
+                            <th scope="col" style="width:10%;">Filing Date</th>
+                            <th scope="col" style="width:10%;">Status</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for matter in matters %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ matter.folder.folder_type }}</td>
+                            <td class="text-center">{{ matter.handling_lawyer.access_code }}</td>
+                            <td>{{ matter.matter_title }}</td>
+                            <td>{{ matter.matterno }}</td>
+                            <td>{{ matter.filing_date | date:'m/d/Y' }}</td>
+                            <td>{{ matter.status }}</td>
+                            <td><a class="btn btn-primary btn-sm" href="{% url 'select-matter' matter.id %}"
+                                    title="Select Matter"><i class="far fa-hand-pointer"></i></a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

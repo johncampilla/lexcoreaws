@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Applicants
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+        <div class="my-3 mx-3">
+            <div class="card">
+                <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
+                    <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newclassofgoodsModal"
+                        title="Add Class Of Goods/Service"><i class="fas fa-plus"></i></a>&nbsp;&nbsp;<b>Class Of
+                        goods</b>
+                </div>
+
+                <table class="table-hover table-bordered table-sm small table" id="#">
+                    <thead class="table-primary text-center">
+                        <tr>
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:10%;">Class Of Goods</th>
+                            <th scope="col" style="width:80%;">Description</th>
+                            <th scope="col" style="width:5%;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for clgoods in classofgoods %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ clgoods.nice_class }}</td>
+                            <td>{{ clgoods.class_description }}</td>
+                            <td><a class="btn btn-secondary btn-sm" href="#" title="Select"><i
+                                        class="far fa-hand-pointer"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    var newSearch = $("#matterlist").DataTable();
+    $('#search').keyup(function () {
+        newSearch.search($(this).val()).draw();
+    })
+</script>
+
+{% endblock%}

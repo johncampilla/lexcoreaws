@@ -1,0 +1,459 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <!-- {% include 'components/header.html' with title="Client Information" description="Details" %} -->
+
+            <div class="card">
+                <div class="card-header text-center text-white sm bg-primary">
+                    <b>{{matter.folder.client.client_name}} - {{matter.matter_title}}</b>
+                </div>
+                <div class=" card-body">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#detail">Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#duedates">Due Dates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#activities">Activities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#theory">Theory/Case Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#evidence">Proof of Filing/Evidence</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="detail">
+                            <a class="btn btn-primary btn-sm mt-1" href="#" title="New Matter"><i
+                                    class="fas fa-plus"></i></a>
+                            <a class="btn btn-primary btn-sm mt-1" href="#" title="Modify Client">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-primary btn-sm mt-1" href="#" title="Delete Client"><i
+                                    class="fas fa-trash-alt"></i></a>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group input-group-sm mb-1 mt-1">
+                                        <span class="input-group-text" style="width: 113px;"> Case Folder</span>
+                                        <input type="text" name="folder" value="{{matter.folder}}" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> Matter Title </span>
+                                        <input type="text" name="folder" value="{{matter.matter_title}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> Our Appearance </span>
+                                        <input type="text" name="folder" value="{{matter.appearance}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> Matter Contact </span>
+                                        <input type="text" name="folder"
+                                            value="{{matter.matter_contact_person.contact_person}}" class="form-control"
+                                            readonly>
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Lawyer </span>
+                                        <input type="text" name="folder" value="{{matter.handling_lawyer.lawyer_name}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Opp Lawyer </span>
+                                        <input type="text" name="folder" value="{{matter.opposing_counsel}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Status </span>
+                                        <input type="text" name="folder" value="{{matter.status}}" class="form-control"
+                                            readonly>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Nature </span>
+                                        <input type="text" name="folder" value="{{matter.nature}}" class="form-control"
+                                            readonly>
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Case Type </span>
+                                        <input type="text" name="folder" value="{{matter.case_type}}"
+                                            class="form-control" readonly>
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">App Type </span>
+                                        <input type="text" name="folder" value="{{matter.apptype}}" class="form-control"
+                                            readonly>
+                                    </div>
+
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Client Reference </span>
+                                        <input type="text" name="folder" value="{{matter.clientrefno}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Our Reference </span>
+                                        <input type="text" name="folder" value="{{matter.referenceno}}"
+                                            class="form-control" readonly>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;"> Date Filed </span>
+                                        <input type="text" name="folder" value="{{ matter.filing_date | date:'m/d/Y'}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">File/Case# </span>
+                                        <input type="text" name="folder" value="{{matter.matterno}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Venue </span>
+                                        <input type="text" name="folder" value="{{matter.filed_at}}"
+                                            class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="duedates">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                            <!-- <li><a class="btn btn-outline-primary btn-sm mb-1 mt-1"
+                                    href="{% url 'new-duedate' matter.id %}" title="New"><i class="fa fa-plus"></i>
+                                    Due Date
+                                </a>
+                            </li> -->
+                        </ul>
+
+                        <a class="btn btn-primary btn-sm mt-1 mb-1" data-bs-toggle="modal"
+                            data-bs-target="#duedateModal" title="New"><i class="fa fa-plus"></i></a>
+                        <table class="table-hover table-bordered table-sm small table"> -->
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:10%;">Due Code</th>
+                                    <th scope="col" style="width:10%;">Due Date</th>
+                                    <th scope="col" style="width:62%;">Particulars</th>
+                                    <th scope="col" style="width:10%;">Date Complied</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for duedate in duedates %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ duedate.duecode.DueCode }}</td>
+                                    <td>{{ duedate.duedate | date:'m/d/Y' }}</td>
+                                    <td>{{ duedate.particulars }}</td>
+                                    <td>{{ duedate.date_complied | date:'m/d/Y' }}</td>
+                                    <td><a class="btn btn-primary btn-sm"
+                                            href="{% url 'edit-duedate' duedate.id matter.id %}" title="Modify"><i
+                                                class="fas fa-edit"></i></a>
+                                    </td>
+
+                                    <td><a class="btn btn-primary btn-sm"
+                                            href="{% url 'delete-duedate' duedate.id matter.id %}" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="duedateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Due Date</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="POST" class="row g-3">
+                                        <div class="col-auto">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="input-group input-group-sm mb-1">
+                                                        <span class="input-group-text"
+                                                            style="width: 110px;">Matter</span>
+                                                        {{form.matter}}
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-1">
+                                                        <span class="input-group-text" style="width: 110px;">Due
+                                                            Code</span>
+                                                        {{form.duecode}}
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-1">
+                                                        <span class="input-group-text" style="width: 110px;">Due
+                                                            Date</span>
+                                                        {{form.duedate}}
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-1">
+                                                        <span class="input-group-text" style="width: 110px;">Particulars
+                                                            Type</span>
+                                                        {{form.particulars}}
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-1">
+                                                        <span class="input-group-text" style="width: 110px;">Date
+                                                            Complied</span>
+                                                        {{form.date_complied}}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary mb-3"
+                                                data-bs-dismiss="modal">Close</button>
+
+                                            <button type="submit" class="btn btn-primary mb-3">Save Record</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ---End of Modal -->
+                    <div class="tab-pane container fade" id="activities">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                            <li><a class="btn btn-outline-primary btn-sm mb-1 mt-1"
+                                    href="{% url 'new-activity' matter.id %}" title="New"><i class="fa fa-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:10%;">Date</th>
+                                    <th scope="col" style="width:10%;">Doc Date</th>
+                                    <th scope="col" style="width:10%;">Lawyer</th>
+                                    <th scope="col" style="width:62%;">Activity</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for activity in activities %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ activity.tran_date | date:'m/d/Y' }}</td>
+                                    <td>{{ activity.doc_date | date:'m/d/Y' }}</td>
+                                    <td>{{ activity.lawyer.access_code }}</td>
+                                    <td>{{ activity.task }}</td>
+                                    <td><a class="btn btn-primary btn-sm"
+                                            href="{% url 'edit-activity' activity.id matter.id %}" title="Modify"><i
+                                                class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td><a class="btn btn-primary btn-sm"
+                                            href="{% url 'delete-activity' activity.id matter.id %}" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="tab-pane container fade mb-2" id="applicant">
+                        <div class="h6 pb-2 mb-1 text-success border-bottom border-success mt-1">
+                            <b>Applicants/Registrants/Assignee</b>
+                        </div>
+
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                            <li><a class="btn btn-outline-primary btn-sm mb-1 mt-1"
+                                    href="{% url 'new-applicant' matter.id %}" title="New"><i class="fa fa-plus"></i>
+                                    Applicants to Matter
+                                </a>
+                            </li>
+                            <li><a class="btn btn-outline-primary btn-sm mb-1 mt-1"
+                                    href="{% url 'new-applicantprofile' matter.id %}" title="New"><i
+                                        class="fa fa-plus"></i>
+                                    Applicants
+                                </a>
+                            </li>
+                        </ul>
+
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:25%;">Applicant</th>
+                                    <th scope="col" style="width:3%;">Main</th>
+                                    <th scope="col" style="width:15%;">Contact#</th>
+                                    <th scope="col" style="width:12%;">Email</th>
+                                    <th scope="col" style="width:22%;">Address</th>
+                                    <th scope="col" style="width:15%;">Nationality</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for applicant in applicants %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href="{% url 'edit-applicant' applicant.applicant.id matter.id %}">
+                                            {{applicant.applicant}}</a> </td>
+                                    <td>{{ applicant.main_applicant }}</td>
+                                    <td>{{ applicant.applicant.contact_no }}</td>
+                                    <td>{{ applicant.applicant.email }}</td>
+                                    <td>{{ applicant.applicant.address }}</td>
+                                    <td>{{ applicant.applicant.nationality }}</td>
+                                    <td><a class="btn btn-primary btn-sm"
+                                            href="{% url 'edit-mainapplicant' applicant.id matter.id %}"
+                                            title="Modify"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td><a class="btn btn-primary btn-sm" href="#" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="h6 pb-2 mb-2 text-success border-bottom border-success">
+                            <b>Inventors/Designers</b>
+                        </div>
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
+                            <li><a class="btn btn-outline-primary btn-sm mb-1 mt-1"
+                                    href="{% url 'new-applicant' matter.id %}" title="New"><i class="fa fa-plus"></i>
+                                    Inventors/Designers to Matter
+                                </a>
+                            </li>
+                        </ul>
+
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:25%;">Inventor/Designer</th>
+                                    <th scope="col" style="width:15%;">Contact No.</th>
+                                    <th scope="col" style="width:15%;">Email</th>
+                                    <th scope="col" style="width:20%;">Address</th>
+                                    <th scope="col" style="width:7%;">Nationality</th>
+                                    <th scope="col" style="width:5%;">Gender</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for inventor in inventors %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><a href=" ">{{ inventor.inventor.first_name }}
+                                            {{ inventor.inventor.middle_name }}
+                                            {{ inventor.inventor.last_name }}
+                                        </a> </td>
+                                    <td>{{ inventor.inventor.contact_no }}</td>
+                                    <td>{{ inventor.inventor.email }}</td>
+                                    <td>{{ applicant.applicant.address }}</td>
+                                    <td>{{ applicant.applicant.nationality }}</td>
+                                    <td>{{ applicant.sex }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="#" title="Modify"><i
+                                                class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td><a class="btn btn-primary btn-sm" href="#" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="tab-pane container fade" id="classofgoods">
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:10%;">Nice Class</th>
+                                    <th scope="col" style="width:82%;">Services/Description</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for service in services %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ service.nice_class.nice_class }}</td>
+                                    <td>{{ service.class_description }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="#" title="Modify"><i
+                                                class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td><a class="btn btn-primary btn-sm" href="#" title="Delete"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane container fade" id="inventors">
+                        <table class="table-hover table-bordered table-sm small table">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th scope="col" style="width:3%;">#</th>
+                                    <th scope="col" style="width:30%;">Court</th>
+                                    <th scope="col" style="width:37%;">Address</th>
+                                    <th scope="col" style="width:20%;">Presiding Judge</th>
+                                    <th scope="col" style="width:5%;">Contact Number</th>
+                                    <th colspan="2" style="width:5%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for court in courts %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ court.court }}</td>
+                                    <td>{{ court.address }}</td>
+                                    <td>{{ court.presiding_judge }}</td>
+                                    <td>{{ court.contact_number }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="{% url 'edit-courts' court.id %}"
+                                            title="Edit Due Date"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td><a class="btn btn-primary btn-sm" href="{% url 'new-courts' %}"
+                                            title="Edit Due Date"><i class="fa fa-plus"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

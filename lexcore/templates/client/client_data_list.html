@@ -1,0 +1,85 @@
+{% extends 'layout/base.html' %}
+{% block title %} Clients {% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <form action="" method="POST" class="row g-3">
+            <div class="col-auto">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Client</span>
+                            {{form.client_name}}
+
+                            {% if form.client_name.errors %}
+                            {% for error in form.client_name.errors %}
+                            <div>
+                                {{ error }}
+                            </div>
+
+                            {% endfor %}
+
+                            {% endif %}
+
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Address</span>
+                            {{form.address}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Country</span>
+                            {{form.country}}
+                        </div>
+
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Industry</span>
+                            {{form.industry}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Category</span>
+                            {{form.category}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 110px;">Date Acquired</span>
+                            {{form.date_acquired}}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Save Record</button>
+            </div>
+        </form>
+
+        <div class="my-3 mx-3">
+            <table class="table-hover table-bordered table-sm small table">
+                <!-- <table class="table-hover table-sm table-bordered small table table-dark table-striped">         -->
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th scope="col" style="width:20%;">Client</th>
+                        <th scope="col" style="width:10%;">Category</th>
+                        <th scope="col" style="width:15%;">Email</th>
+                        <th scope="col" style="width:10%;">Mobile</th>
+                        <th scope="col" style="width:10%;">Industry</th>
+                        <th scope="col" style="width:30%;">Address</th>
+                        <th scope="col" style="width:5%;">Country</th>
+                    </tr>
+                </thead>
+                {% for client in object_list %}
+                <tr>
+                    <td>{{client.client_name}}</td>
+                    <td>{{ client.category }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.mobile }}</td>
+                    <td>{{ client.industry }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.country }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>Are you sure you want to delete <b>"{{activity}}"</b>?</p>
+                <a href="{% url 'select-activity' activity.id %}">Go Back</a>
+                <input type="submit" value="Delete" />
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

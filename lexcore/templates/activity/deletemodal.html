@@ -1,0 +1,29 @@
+<div class="modal fade" id="deleteactivityModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="deleteactivityModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteactivityModalLabel">Applicant Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'delete-activity' activity.id' %}" method="POST" class="row g-3">
+                    <div class="col-auto">
+                        {% csrf_token %}
+                        <div class="row">
+                            <p>Are you sure you want to delete <b>"{{activity}}"</b>?</p>
+                            <!-- <a href="{% url 'select-activity' activity.id %}">Go Back</a> -->
+                            <!-- <input type="submit" value="Delete" /> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input class='btn btn-secondary' type="submit" value="Delete">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <h6 class="text-center font-weight-bold"><b>Number Of Matters (By Application Type)</b> </h6>
+                    <canvas id="myChart1" width="1000" height="150"></canvas>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <h6 class="text-center font-weight-bold"><b>Number Of Clients by (Industry)</b> </h6>
+                    <canvas id="myChart2" width="1000" height="150"></canvas>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-md-12">
+                    <h6 class="text-center font-weight-bold">Number Of Matters (Lawyers) </h6>
+                    <canvas id="myChart3" width="1000" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

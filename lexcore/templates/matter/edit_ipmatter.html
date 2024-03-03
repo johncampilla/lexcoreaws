@@ -1,0 +1,180 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <form action="" method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="CARD">
+                                <div class="card-header text-center text-white sm bg-secondary mb-1">
+                                    <b>Patents Application Detail</b>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Matter ID</span>
+                                    <input type="text" name="matter" value="{{ matter.id }}" class="form-control"
+                                        readonly>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Matter Title</span>
+                                    <input type="text" name="mattertitle" value="{{matter.matter_title}}"
+                                        class="form-control" readonly>
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPO Examiner</span>
+                                    {{form.ipo_examiner}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Application No.</span>
+                                    {{form.application_no}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Application Date</span>
+                                    {{form.application_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Pub Reference</span>
+                                    {{form.publication_reference}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Publication Date</span>
+                                    {{form.publication_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Registration No.</span>
+                                    {{form.certificate_no}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Registration No.</span>
+                                    {{form.registration_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Renewal Date</span>
+                                    {{form.renewal_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Status</span>
+                                    {{form.status}}
+                                </div>
+
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Withdrawn Date</span>
+                                    {{form.date_of_Withdrawn}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Reason</span>
+                                    {{form.reason_withdrawn}}
+                                </div>
+                                <b>Priority Details</b>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Number</span>
+                                    {{form.priority_number}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Date</span>
+                                    {{form.priority_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Priority Filing</span>
+                                    {{form.priority_country_filing}}
+                                </div>
+                                <b>IPC Details</b>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Number</span>
+                                    {{form.ipc_appno}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IPC Date</span>
+                                    {{form.ipc_appdate}}
+                                </div>
+
+                            </div>
+                            <div class="card">
+                                <div class="card-header text-center text-white sm bg-secondary mb-1">
+                                    <b>Trademark Application</b>
+                                </div>
+                                <b>Trademark Information</b>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Claim Of Color</span>
+                                    {{form.claim_of_color}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Translation</span>
+                                    {{form.translation}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Disclaimer</span>
+                                    {{form.disclaimer}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">Type of Mark</span>
+                                    {{form.type_of_mark}}
+                                </div>
+                                <b>Madrid Details</b>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IR Date</span>
+                                    {{form.IR_date}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IR Subsequent Date</span>
+                                    {{form.IR_subsequentDate}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">IR Renewal</span>
+                                    {{form.IR_renewalDate}}
+                                </div>
+
+                            </div>
+                            <div class="card">
+                                <div class="card">
+                                    <div class="card-header text-center text-white sm bg-secondary mb-1">
+                                        <b>Invention/Utility Model/Design Application</b>
+                                    </div>
+                                    <b> Divisional Applications (parent) </b>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Application No.</span>
+                                        {{form.parent_appno}}
+                                    </div>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 113px;">Application Date</span>
+                                        {{form.parent_appdate}}
+                                    </div>
+                                </div>
+                                <b>PCT details (for Invention/Utility Model)</b>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">PCT AppNo</span>
+                                    {{form.pct_appno}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">PCT App Date</span>
+                                    {{form.pct_appdate}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">PCT Publn.</span>
+                                    {{form.pct_publication}}
+                                </div>
+                                <div class="input-group input-group-sm mb-1">
+                                    <span class="input-group-text" style="width: 113px;">PCT Pub Date</span>
+                                    {{form.pct_pubdate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a class='btn btn-secondary mt-2' href="{% url 'select-matter' matter.id %}">Return</a>
+                        <input class='btn btn-secondary mt-2' type="submit" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

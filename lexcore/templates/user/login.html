@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/mainsidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/mainheader.html' %}
+        <div class="my-3 mx-3">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header mb-2" style=" color: black; background-color:rgb(228, 248, 188);"> User
+                            LogIn Form
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="username"
+                                        placeholder="User Name">
+                                    <label for="floatingInput">User Name</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password"
+                                        placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <p> Don't have an account? Register <a href="{% url 'user-register' %}">here</a></p>
+                                <input type="submit" value="Login" />
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

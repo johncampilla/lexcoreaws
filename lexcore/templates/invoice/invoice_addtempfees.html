@@ -1,0 +1,50 @@
+<div class="modal fade" id="newtempfees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="newtempfeesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newtempfeesLabel">PF Entry</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'invoice-newFees' %}" method="POST" class="row g-3">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">ID</span>
+                            <input type="text" name="matter" value="{{matter.id}}" class="form-control" readonly>
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Matter Title</span>
+                            <input type="text" name="mattertitle" value="{{matter.matter_title}}" class="form-control"
+                                readonly>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Date</span>
+                            {{formFees.tran_date}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Filing Particulars</span>
+                            {{formFees.filing_particulars}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Amount (USD)</span>
+                            {{formFees.USDamount}}
+                        </div>
+                        <div class="input-group input-group-sm mb-1">
+                            <span class="input-group-text" style="width: 125px;">Amount (PhP)</span>
+                            {{formFees.PhPamount}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input class='btn btn-secondary' type="submit" value="Save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

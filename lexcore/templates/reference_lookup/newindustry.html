@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-white p-3 bg-gradient-primary text-black">
+                    <h6>New Industry</h6>
+                    <hr>
+                    <form action="" method="POST" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group input-group-sm mb-1">
+                                        <span class="input-group-text" style="width: 110px;">Industry</span>
+                                        {{form.industry}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary mb-3">Save Record</button> -->
+                            <a class='btn btn-success' href="{% url 'reference-index' %}">Return</a>
+                            <input class='btn btn-success' type="submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <table class="table-hover table-bordered table-sm small table" id="clientlist">
+                <!-- <table class="table-hover table-sm table-bordered small table table-dark table-striped">         -->
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th scope="col" style="width:3%;">#</th>
+                        <th scope="col" style="width:15%;">Client</th>
+                        <th scope="col" style="width:10%;">Category</th>
+                        <th scope="col" style="width:15%;">Email</th>
+                        <th scope="col" style="width:10%;">Mobile</th>
+                        <th scope="col" style="width:8%;">Industry</th>
+                        <th scope="col" style="width:30%;">Address</th>
+                        <th scope="col" style="width:5%;">Country</th>
+                        <th scope="col" style="width:5%;">Select</th>
+
+                    </tr>
+                </thead>
+                {% for client in clients %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{client.client_name}}</td>
+                    <td>{{ client.category }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.mobile }}</td>
+                    <td>{{ client.industry }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.country }}</td>
+                    <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                            href="{% url 'select-client' client.id %}" title="Select"><i
+                                class="far fa-hand-pointer"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}
+Emails
+{% endblock title %}
+{% block content %}
+<div class="d-flex">
+    {% include 'layout/sidebar.html' %}
+    <div class="w-100">
+        {% include 'layout/header.html' %}
+        <div class="my-3 mx-3">
+            {% include 'emailportal/navbar.html' %}
+            <table class="table-hover table-bordered table-sm small table" id="maillist">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th scope="col" style="width:3%;">#</th>
+                        <th scope="col" style="width:20%;">Subject</th>
+                        <th scope="col" style="width:5%;">Sent From</th>
+                        <th scope="col" style="width:15%;">Sent To</th>
+                        <th scope="col" style="width:17%;">Sent Date</th>
+                        <th scope="col" style="width:50%;">Message</th>
+                        <th scope="col" style="width:5%;">Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for email in emails %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ email.subject }}</td>
+                        <td>{{ email.sentby }}</td>
+                        <td>{{ email.email }}</td>
+                        <td>{{ email.created_at }}</td>
+                        <td>{{ email.message }}</td>
+                        <td style="text-align: center;"><a class="btn btn-secondary btn-sm"
+                                href="{% url 'view_email' email.id %}" title="Select Email"><i
+                                    class="far fa-hand-pointer"></i></a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
