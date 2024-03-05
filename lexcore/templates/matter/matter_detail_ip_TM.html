@@ -402,7 +402,7 @@ Trademark Details
                         <div class="tab-pane container fade" id="classgoods">
                             <a class="btn btn-secondary btn-sm mt-1 mb-1" data-bs-toggle="modal"
                                 data-bs-target="#newclGoods" title="Add Class Of Goods"><i class="fas fa-plus"></i></a>
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-classofgoods' %}"
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'list-classofgoods' matter.id %}"
                                 title="Class Of Goods"><i class="far fa-folder-open"></i>&nbsp;&nbsp;NICE
                                 Classification Of Goods</a>
 
@@ -506,6 +506,39 @@ Trademark Details
                                     {% endfor %}
                                 </tbody>
                             </table>
+
+                            <div class="card mt-3">
+                                <div class="card-header text-center text-white sm bg-primary">
+                                    <b>Uploaded Documents</b>
+                                </div>
+
+                                <table class="table-hover table-bordered table-sm small table" id="activitylisting">
+                                    <thead class="table-primary text-center">
+                                        <tr>
+                                            <th scope="col" style="width:3%;">#</th>
+                                            <th scope="col" style="width:10%;">Task</th>
+                                            <th scope="col" style="width:10%;">Description</th>
+                                            <th scope="col" style="width:10%;">Document</th>
+                                            <th scope="col" style="width:5%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for docs in documents %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ docs.task_detail }}</td>
+                                            <td>{{ docs.Description }}</td>
+                                            <td>{{ docs.DocsPDF }}</td>
+                                            <td class="text-center"><a class="btn btn-secondary btn-sm"
+                                                    href="{% url 'matter-viewattach' docs.id %}"
+                                                    title="View Activity"><i class="far fa-hand-pointer"></i></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                         </div>
                         <div class="tab-pane container fade mb-2" id="invoices">

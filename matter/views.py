@@ -203,22 +203,25 @@ def viewinventors(request, mid):
     return render(request, 'matter/listofinventors.html', context)
 
 @login_required
-def viewclassofgoods(request):
+def viewclassofgoods(request, pk):
+    matter = Matters.objects.get(id=pk)
     classofgoods = ClassOFGoods.objects.all().order_by('nice_class')
     form = ClGoodsProfileForm()
     context = {
         'form': form,
-        'classofgoods' : classofgoods
+        'matter': matter,
+        'classofgoods' : classofgoods,
+        'pk':pk
     }
     return render(request, 'matter/listofgoods.html', context)
 
 @login_required
-def newclgoodsprofile(request):
+def newclgoodsprofile(request, pk):
     if request.method == 'POST':
         form = ClGoodsProfileForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return redirect('list-classofgoods', pk)
     
 @login_required
 def NewPriority_modal(request):

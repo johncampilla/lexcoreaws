@@ -11,6 +11,7 @@ Applicants
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
         <div class="my-3 mx-3">
+            <a href="{% url 'select-matter' matter.id %}">Return</a>
             <div class="card">
                 <div class="card-header text-center mb-2" style=" color: black; background-color:rgb(228, 248, 188);">
                     <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newclassofgoodsModal"
@@ -31,7 +32,7 @@ Applicants
                         {% for clgoods in classofgoods %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ clgoods.nice_class }}</td>
+                            <td style="text-align: center;"><b>{{ clgoods.nice_class }}</b></td>
                             <td>{{ clgoods.class_description }}</td>
                             <td><a class="btn btn-secondary btn-sm" href="#" title="Select"><i
                                         class="far fa-hand-pointer"></i></a>

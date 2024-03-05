@@ -90,7 +90,7 @@ class FilingDocs(models.Model):
         verbose_name_plural = 'Attached Documents'
 
     def __str__(self):
-        return f'{self.DocDate} - {self.DocsPDF}'
+        return f'{self.DocDate} {self.task_detail} -{self.DocsPDF}'
     
     @property
     def imageURL(self):

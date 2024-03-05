@@ -72,7 +72,7 @@ urlpatterns = [
     path("matter/classofgoods/edit/<int:pk>/<int:mid>/'", views.EditClassOfGoods, name='edit-classofgoods'),
     path("matter/classofgoods/del/<int:pk>/<int:mid>/'", views.RemoveClassGoods, name='remove-classofgoods'),
 
-    path("matter/classofgoods/list/", views.viewclassofgoods, name='list-classofgoods'),
+    path("matter/classofgoods/list/<int:pk>/'", views.viewclassofgoods, name='list-classofgoods'),
     path("matter/classofgoods/save/", views.newclgoodsprofile, name='profile-classofgoods'),
 
 #

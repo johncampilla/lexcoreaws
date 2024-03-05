@@ -1,4 +1,7 @@
 {% extends 'layout/base.html' %}
+{% block title %}
+Selected Activity
+{% endblock %}
 {% block content %}
 <div class="d-flex">
     {% include 'layout/sidebar.html' %}
@@ -105,7 +108,7 @@
             </form>
             <div class="card">
                 <div class="card-header text-center text-white sm bg-primary mb-2">
-                    <a class="btn btn-secondary btn-sm mt-1" href="{% url 'matter-attachdocument' activity.id %}"
+                    <a class="btn btn-secondary btn-sm mt-1" href="{% url 'attachdocument' activity.id %}"
                         title="New Document"><i class="fas fa-plus"></i></a>
                     Attached Documents
                 </div>
@@ -117,7 +120,7 @@
                             <th scope="col" style="width:10%;">Date</th>
                             <th scope="col" style="width:60%;">Description</th>
                             <th scope="col" style="width:10%;">Document</th>
-                            <th scope="col" style="width:5%;">Action</th>
+                            <th colspan="2" style="width:5%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,6 +138,10 @@
                             <td class="text-center"><a class="btn btn-secondary btn-sm"
                                     href="{% url 'view-attach' doc.id %}" title=" View Document"><i
                                         class="far fa-hand-pointer"></i></a>
+                            </td>
+                            <td class="text-center"><a class="btn btn-secondary btn-sm"
+                                    href="{% url 'remove-attachdocument' doc.id matter.id %}"
+                                    title="Delete Attachment"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         {% endfor %}

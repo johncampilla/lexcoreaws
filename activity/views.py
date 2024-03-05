@@ -86,6 +86,32 @@ def ViewActivity(request, pk, mid):
     }
     return render(request, 'activity/view_activity.html', context)
 
+def AttachDocument(request, pk):
+    task = task_detail.objects.get(id=pk)
+    matter = Matters.objects.get(id = task.matter_id)
+    user_name = request.user.username
+
+    if request.method == 'POST':
+        form = filingdocforms(request.POST, request.FILES)
+        if form.is_valid():
+            document_rec = form.save(commit=False)
+            document_rec.task_detail_id = task.id
+            document_rec.createdby = user_name
+            document_rec.save()            
+            return redirect('view-activity', task.id, task.matter_id)
+        else:
+            form = filingdocforms()
+    else:
+        form = filingdocforms()
+
+    context = {
+        'form': form,
+        'matter':matter,
+        'task' : task,
+    }
+    return render(request, 'matter/newactivitydocs.html', context) 
+
+
 @login_required
 def viewattachdocument(request, pk):
     docs = FilingDocs.objects.get(id=pk) 
@@ -290,3 +316,8 @@ def removetembills(request, pk):
     tempbills.delete()
     return redirect('select-activity', task_id)
 
+def RemoveAttachDocument(request, pk, mid):
+    docfile = FilingDocs.objects.get(id = pk)
+    task_id = docfile.task_detail_id
+    docfile.delete()
+    return redirect('view-activity', task_id, mid )
