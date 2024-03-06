@@ -71,6 +71,35 @@ Docket
                         {% endfor %}
                     </tbody>
                 </table>
+                <div class="card">
+                    <table class="table-hover table-bordered table-sm small table" id="doclist">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th scope="col" style="width:3%;">#</th>
+                                <th scope="col" style="width:30%;">Matter</th>
+                                <th scope="col" style="width:30%;">Activity</th>
+                                <th scope="col" style="width:30%;">Description</th>
+                                <th scope="col" style="width:5%;">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doc in documents %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ doc.task_detail.matter }}</td>
+                                <td>{{ doc.task_detail }}</td>
+                                <td>{{ doc.Description }}</td>
+                                <td><a class="btn btn-secondary btn-sm" href="#" title="Select Document"><i
+                                            class="far fa-hand-pointer"></i></a>
+                                </td>
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
         </div>
     </div>

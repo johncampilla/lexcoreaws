@@ -216,13 +216,12 @@ def viewclassofgoods(request, pk):
     return render(request, 'matter/listofgoods.html', context)
 
 @login_required
-def newclgoodsprofile(request, pk):
+def newclgoodsprofile(request):
     if request.method == 'POST':
         form = ClGoodsProfileForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('list-classofgoods', pk)
-    
+            form.save()            
+            return redirect('select-matter', request.POST['matter'])    
 @login_required
 def NewPriority_modal(request):
     if request.method == 'POST':

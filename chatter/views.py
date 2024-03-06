@@ -122,7 +122,7 @@ def openchat(request, pk):
     chat = inboxmessage.objects.get(id = pk)
     matter = Matters.objects.get(id = chat.see_matter_id)
     emails = Emails.objects.filter(matter_id = matter.id).order_by('-created_at')
-    mattermessages = inboxmessage.objects.filter(see_matter_id = matter.id).order_by('-created_at')
+    mattermessages = inboxmessage.objects.filter(see_matter_id = matter.id).order_by('created_at')
     try:
         ip_matter = IP_Matter.objects.get(id=chat.see_matter_id)
     except IP_Matter.DoesNotExist:

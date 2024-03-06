@@ -199,10 +199,8 @@ AWS_DEFAULT_ACL =  None
 AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.Emailbackend'
-
 #==================For Cloud Database======================================
-
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.Emailbackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

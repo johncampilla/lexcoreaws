@@ -163,6 +163,7 @@ def RemoveActivity(request, pk):
 def matterlist(request):
     matters = Matters.objects.all().order_by('-filing_date')
     docketlist = task_detail.objects.all().order_by('-tran_date')
+    documents = FilingDocs.objects.all().order_by('-datecreated', 'DocDate')
     outform = OutgoingActivityForm
     inform = IncomingActivityForm
 
@@ -171,6 +172,7 @@ def matterlist(request):
         'docketlist': docketlist,
         'outform': outform,
         'inform': inform,
+        'documents': documents,
     }
 
     return render(request, 'activity/docketlist.html', context)
@@ -221,10 +223,12 @@ def NewOutgoingActivity(request):
 
             case_type_id = matter.case_type_id
             case_type = CaseType.objects.get(id = case_type_id)
+            if task_code:
+                billcode_rec = ActivityCodes.objects.get(id = task_code)
             
-            billcode_rec = ActivityCodes.objects.get(id = task_code)
             lawyer_rec = Lawyer_Data.objects.get(id = lawyer_id)
-            filingfees = FilingFeeCodes.objects.filter(ActivityCode_id = task_code)
+            if task_code:
+                filingfees = FilingFeeCodes.objects.filter(ActivityCode_id = task_code)
             outgoingrec.save()
             sTask_ID = outgoingrec.id
 
